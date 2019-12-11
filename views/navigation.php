@@ -1,8 +1,15 @@
+
+
+
 <nav class="navbarMobileBox hidden-mobile">
   <h1 class="title"><?php echo $config['title'] ?></h1>
   <ul class="navList">
     <li class="navItem"><a href="/" class="navLinks">Home</a></li>
     <li class="navItem"><a href="#" class="navLinks">About</a></li>
+    <?php if (userLoggedIn()){ ?>
+      <li class="navItem"><a href="/app/users/logout.php" class="navLinks">Logout</a></li>
+    <?php }else { ?>
     <li class="navItem"><a href="/login.php" class="navLinks">Login</a></li>
+  <?php } ?>
   </ul>
 </nav>

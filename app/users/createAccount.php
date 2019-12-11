@@ -5,26 +5,34 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $username = filter_var($_POST['username']);
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $username = trim($_POST['username']);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    // $pdo = new PDO($config['database_path']);
 
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
-    $statement-> execute([
-        ':email' => $email,
-    ]);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['errors'] = ['The email address is not a valid email address!'];
+        redirect('/createAccount.php');
+    }
 
-    $emailAlreadyExist = $statement->fetchAll(PDO::FETCH_ASSOC);
+    if (strlen($username) < 5) {
+        $_SESSION['errors'] = ['You have to enter a username that is atleast five characters long'];
+        redirect('/createAccount.php');
+    }
 
-    $statement = $pdo->prepare('SELECT * FROM users WHERE username = :username');
-    $statement-> execute([
-        ':username' => $username,
-    ]);
+    if (alreadyExistInDatabase($email, $username, $pdo)) {
+        $_SESSION['errors'] = ['It seems that the email or username is already registered.'];
+        redirect('/createAccount.php');
+    }
 
-    $usernameAlreadyExist = $statement->fetchAll(PDO::FETCH_ASSOC);
+    if (alreadyExistInDatabase($email, $username, $pdo)) {
+        $_SESSION['errors'] = ['It seems that this username is already in use.'];
+        $_SESSION['errors'][] = 'It seems that the email is already registered.';
+        redirect('/createAccount.php');
+    }
 
-    if ($emailAlreadyExist === [] && $usernameAlreadyExist === []) {
-        $statement = $pdo->prepare('INSERT INTO users (name, email, password) VALUES(:username, :email, :password)');
+    if (alreadyExistInDatabase($email, $username, $pdo) === false) {
+        $statement = $pdo->prepare('INSERT INTO users (username, email, password) VALUES(:username, :email, :password)');
         $statement->execute([
             ':username' => $username,
             ':email' => $email,
@@ -33,19 +41,6 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
         if (isset($_SESSION['errors'])){
             unset($_SESSION['errors']);
         }
-    }
-    if ($emailAlreadyExist !== [] && $usernameAlreadyExist === []) {
-        $_SESSION['errors'] = ['It seems that the email is already registered.'];
-        redirect('/createAccount.php');
-    }
-    if ($usernameAlreadyExist !== [] && $emailAlreadyExist === []) {
-        $_SESSION['errors'] = ['It seems that this username is already in use.'];
-        redirect('/createAccount.php');
-    }
-    if ($usernameAlreadyExist !== [] && $emailAlreadyExist !== []) {
-        $_SESSION['errors'] = ['It seems that this username is already in use.'];
-        $_SESSION['errors'][] = 'It seems that the email is already registered.';
-        redirect('/createAccount.php');
     }
 
 }
