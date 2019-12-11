@@ -50,3 +50,10 @@ body {
   width: 46px;
   text-decoration: none;
 }
+
+.loginForm {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 20vw;
+}

@@ -1,3 +1,7 @@
+<?php
+require __DIR__.'/../app/autoload.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -8,4 +12,5 @@
 <title>Picture This</title>
 </head>
 <body>
+  
 <?php require __DIR__ . '/navigation.php' ?>
