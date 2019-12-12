@@ -36,19 +36,21 @@ if (!function_exists('userLoggedIn')) {
 
 
 if (!function_exists('alreadyExistInDatabase')) {
-
-    function alreadyExistInDatabase($searchedEmail, $searchedUsername, $pdo){
+    /**
+    * Checks if email or username exist in the database
+    * @param  string $searchedEmail    The searched email
+    * @param  string $searchedUsername The searched username
+    * @param  object $pdo              [description]
+    * @return bool                     [description]
+    */
+    function alreadyExistInDatabase(string $searchedEmail, string $searchedUsername, object $pdo):array {
         $statement = $pdo->prepare('SELECT * FROM users WHERE email = :searchedEmail OR username = :searchedUsername');
         $statement-> execute([
             ':searchedEmail' => $searchedEmail,
             ':searchedUsername' => $searchedUsername
         ]);
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        if ($result === []) {
-            return false;
-        } else{
-            return true;
-        }
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
     }
 }

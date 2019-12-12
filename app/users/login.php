@@ -18,7 +18,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     if (password_verify($password, $user['password']) !== false) {
         $_SESSION['user'] = [
             'id' => $user['id'],
-            'name' => $user['name'],
+            'username' => $user['username'],
             'email' => $user['email']
         ];
         unset($_SESSION['errors']);
