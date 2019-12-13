@@ -64,3 +64,50 @@ body {
   justify-content: center;
   width: 20vw;
 }
+
+.changeBio {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.changeBio textarea {
+  height: 90px;
+  width: 300px;
+  resize: none;
+  overflow: visible;
+}
+
+.changeBio input {
+  height: 125px;
+  width: 300px;
+  resize: none;
+  overflow: visible;
+}
+
+.changePassword {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.profileName{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: #66ccff;
+}
+
+.profileBio {
+  height: 200px;
+  width: 100%;
+  font-size: 16px;
+}
+
+
+
