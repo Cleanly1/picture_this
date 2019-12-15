@@ -42,11 +42,13 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
     if (isset($_SESSION['errors'])) {
         redirect('/createAccount.php');
     }else {
-        $statement = $pdo->prepare('INSERT INTO users (username, email, password) VALUES(:username, :email, :password)');
+        $statement = $pdo->prepare('INSERT INTO users (username, email, password, avatar_image) VALUES(:username, :email, :password, :avatar_image)');
         $statement->execute([
             ':username' => $username,
             ':email' => $email,
-            ':password' => $password
+            ':password' => $password,
+            ':avatar_image' => '/uploads/default-avatar.png'
+
         ]);
         if (isset($_SESSION['errors'])){
             unset($_SESSION['errors']);

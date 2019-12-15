@@ -8,12 +8,58 @@ if (!isset($_SESSION['user'])) {
     redirect('/');
 }
 
-if (isset($_POST['oldPassword'], $_POST['newPassword'],$_POST['repeatNewPassword'])) {
-    $oldPassword = $_POST['oldPassword'];
-    $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
+
+if (isset($_POST['bio'],$_SESSION['user'])) {
+    $updatedBio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
+
+
+    preg_match_all("/(\n)/", $updatedBio, $matches);
+    $totalLines = count($matches[0]) + 1;
+    if ($totalLines > 6) {
+        $_SESSION['errors'][] = 'Your text is tooooo long';
+    }
+    if (empty($_SESSION['errors'])) {
+        $statement = $pdo->prepare('UPDATE users SET biography = :biography WHERE id = :id');
+        $statement->execute([
+            ':biography' => $updatedBio,
+            ':id' => $_SESSION['user']['id']
+        ]);
+        $_SESSION['user']['bio'] = $updatedBio;
+        // if (!$hej) {
+        //     die(var_dump($pdo->errorInfo()));
+        // }
+    }
+    redirect('/settings.php');
+}
+
+
+if (isset($_FILES['avatar'],$_SESSION['user'])) {
+  $avatar = $_FILES['avatar'];
+
+  if ($avatar['type'] != 'image/png' && $avatar['type'] != 'image/jpg') {
+    $_SESSION['errors'][] = 'The image file type is not allowed.';
+  }
+
+  if ($avatar['size'] > 2000000) {
+    $_SESSION['errors'][] = 'The uploaded file exceeded the file size limit.';
+  }
+
+  if (empty($errors)) {
+    $avatarPath = '/uploads/' . $_SESSION['user']['id'] . '-avatar.jpg';
+    move_uploaded_file($avatar['tmp_name'], '../../uploads/' . $_SESSION['user']['id'] . '-avatar.jpg');
+    $statement = $pdo->prepare('UPDATE users SET avatar_image = :avatar_image WHERE id = :id');
     $statement->execute([
+        ':avatar_image' => $avatarPath,
         ':id' => $_SESSION['user']['id']
     ]);
+    $_SESSION['user']['avatar'] = $avatarPath;
+    redirect('/profile.php');
+  }
+}
+
+if (isset($_POST['oldPassword'], $_POST['newPassword'],$_POST['repeatNewPassword'],$_SESSION['user'])) {
+    $userData = getUserData($pdo);
+
     $userData = $statement->fetch(PDO::FETCH_ASSOC);
     if (!password_verify($oldPassword, $userData['password'])) {
         $_SESSION['errors'][] = 'You entered the wrong password';
@@ -36,27 +82,36 @@ if (isset($_POST['oldPassword'], $_POST['newPassword'],$_POST['repeatNewPassword
     redirect('/settings.php');
 }
 
-if (isset($_POST['bio'])) {
-    $updatedBio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
+if (isset($_POST['oldEmail'], $_POST['newEmail'], $_POST['password'], $_SESSION['user'])) {
+    $userData = getUserData($pdo);
+    $newEmail = filter_var($_POST['newEmail'], FILTER_SANITIZE_EMAIL);
+    $oldEmail = filter_var($_POST['oldEmail'], FILTER_SANITIZE_EMAIL);
 
 
-    preg_match_all("/(\n)/", $updatedBio, $matches);
-    $totalLines = count($matches[0]) + 1;
-    if ($totalLines > 6) {
-        $_SESSION['errors'][] = 'Your text is tooooo long';
+    if (!password_verify($_POST['password'], $userData['password'])) {
+        $_SESSION['errors'][] = 'You entered the wrong password';
     }
-    if (empty($_SESSION['errors'])) {
-        $statement = $pdo->prepare('UPDATE users SET biography = :biography WHERE id = :id');
+
+    if ($newEmail === $userData['email']) {
+        $_SESSION['errors'][] = 'No need to change to the same email';
+    }
+
+    if (condition) {
+        // code...
+    }
+
+
+    if (empty($_SESSION['errors']) && $oldEmail === $userData['email']) {
+        $statement = $pdo->prepare('UPDATE users SET email = :newEmail WHERE id = :id');
         $statement->execute([
-            ':biography' => $updatedBio,
+            ':newEmail' => $newEmail,
             ':id' => $_SESSION['user']['id']
         ]);
-        $_SESSION['user']['bio'] = $updatedBio;
-        // if (!$hej) {
-        //     die(var_dump($pdo->errorInfo()));
-        // }
+
     }
+
     redirect('/settings.php');
 }
+
 
 redirect('/');

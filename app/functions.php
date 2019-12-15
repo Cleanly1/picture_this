@@ -54,3 +54,19 @@ if (!function_exists('alreadyExistInDatabase')) {
 
     }
 }
+
+
+if (!function_exists('getUserData')) {
+
+    function getUserData(object $pdo):array {
+        $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
+        $statement->execute([
+            ':id' => $_SESSION['user']['id']
+        ]);
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+
+
+}

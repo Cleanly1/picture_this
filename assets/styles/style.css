@@ -13,13 +13,15 @@ body {
 }
 
 .navbarMobileBox {
+  position: fixed;
+  bottom: 0px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 16px 5vw;
+  padding: 16px 2.5vw;
   height: 40px;
-  width: 90vw; 
+  width: 95vw;
   background-color: #66ccff;
 }
 
@@ -80,13 +82,6 @@ body {
   overflow: visible;
 }
 
-.changeBio input {
-  height: 125px;
-  width: 300px;
-  resize: none;
-  overflow: visible;
-}
-
 .changePassword {
   display: flex;
   flex-flow: column nowrap;
@@ -99,15 +94,37 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: row nowrap;
   height: 50px;
   background-color: #66ccff;
 }
-
-.profileBio {
-  height: 200px;
-  width: 100%;
-  font-size: 16px;
+.profileName a{
+    position: absolute;
+    right: 10px;
 }
 
+.profileBio {
+  height: 100px;
+  width: 300px;
+  font-size: 16px;
+  box-shadow: 0px 0px 6px black;
+}
 
+.profileInfo {
+  display: flex;
+}
 
+.profileInfo h4 {
+  font-size: 18px;
+}
+
+.profileInfo img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid lightgrey;
+  box-shadow: 0px 0px 6px black;
+  margin: 7px;
+  font-size: 16px;
+}

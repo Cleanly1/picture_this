@@ -21,7 +21,8 @@ if (isset($_POST['email'], $_POST['password'])) {
             'id' => $user['id'],
             'username' => $user['username'],
             'email' => $user['email'],
-            'bio' => $user['biography']
+            'bio' => $user['biography'],
+            'avatar' => $user['avatar_image']
         ];
         unset($_SESSION['errors']);
     } else {
