@@ -15,7 +15,8 @@ if (isset($_POST['bio'],$_SESSION['user'])) {
 
     preg_match_all("/(\n)/", $updatedBio, $matches);
     $totalLines = count($matches[0]) + 1;
-    if ($totalLines > 6) {
+
+    if ($totalLines > 6 || strlen($updatedBio)-$totalLines > 255) {
         $_SESSION['errors'][] = 'Your text is tooooo long';
     }
     if (empty($_SESSION['errors'])) {
@@ -96,12 +97,11 @@ if (isset($_POST['oldEmail'], $_POST['newEmail'], $_POST['password'], $_SESSION[
         $_SESSION['errors'][] = 'No need to change to the same email';
     }
 
-    if (condition) {
-        // code...
+    if ($oldEmail !== $userData['email']) {
+        $_SESSION['errors'][] = 'Old email is not a match';
     }
 
-
-    if (empty($_SESSION['errors']) && $oldEmail === $userData['email']) {
+    if (empty($_SESSION['errors']) && password_verify($_POST['password'], $userData['password'])) {
         $statement = $pdo->prepare('UPDATE users SET email = :newEmail WHERE id = :id');
         $statement->execute([
             ':newEmail' => $newEmail,
