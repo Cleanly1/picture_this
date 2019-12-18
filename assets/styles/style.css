@@ -75,7 +75,7 @@ body {
   margin: 20px;
 }
 
-.changeBio textarea {
+textarea {
   height: 90px;
   width: 300px;
   resize: none;

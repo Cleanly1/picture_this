@@ -1,7 +1,9 @@
 <?php
 
 require __DIR__ . '/views/header.php';
-
+if (!isset($_SESSION['user'])){
+    redirect('/');
+};
 ?>
 
 <div class="profileName">
@@ -33,9 +35,7 @@ require __DIR__ . '/views/header.php';
         <p><?php echo nl2br($_SESSION['user']['bio']) ?></p>
     <?php } ?>
 </div>
-<?php if ($_SESSION['user']): ?>
 
-<?php endif; ?>
 
 <?php
 
