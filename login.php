@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require __DIR__ . '/views/header.php';
 
@@ -9,7 +9,7 @@ require __DIR__ . '/views/header.php';
    <?php }; ?>
    <?php unset($_SESSION['errors']) ?>
  <?php }; ?>
- 
+ <div class="loginPage">
  <form class="loginForm" action="app/users/login.php" method="post">
    <label for="email">Email</label>
    <input type="email" name="email" placeholder="example@example.se" required>
@@ -18,8 +18,9 @@ require __DIR__ . '/views/header.php';
    <button type="submit" name="login">Login</button>
  </form>
  <a href="/createAccount.php">Create account</a>
- 
- <?php 
+</div>
+
+ <?php
 
  require __DIR__ . '/views/footer.php';
 

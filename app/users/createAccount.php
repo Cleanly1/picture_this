@@ -13,12 +13,14 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['errors'] = ['The email address is not a valid email address!'];
-        redirect('/createAccount.php');
     }
 
     if (strlen($username) < 5) {
         $_SESSION['errors'] = ['You have to enter a username that is atleast five characters long'];
-        redirect('/createAccount.php');
+    }
+
+    if (strlen($_POST['password']) < 5) {
+        $_SESSION['errors'][] = 'Your password needs to be atleast 5 characters long';
     }
 
     foreach ($results as $result) {
