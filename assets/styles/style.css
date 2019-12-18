@@ -89,7 +89,7 @@ form button {
 }
 
 form label {
-    margin: 5px;
+    margin: 0 10px;
 }
 
 .makeAccount {
@@ -101,12 +101,21 @@ form label {
   height: 100%;
 }
 
+.chooseAvatar {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
 .changeBio {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
   margin: 20px 0;
+}
+
+.changeBio textarea {
+    margin: 10px;
 }
 
 textarea {

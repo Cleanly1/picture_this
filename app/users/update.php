@@ -61,7 +61,9 @@ if (isset($_FILES['avatar'],$_SESSION['user'])) {
 if (isset($_POST['oldPassword'], $_POST['newPassword'],$_POST['repeatNewPassword'],$_SESSION['user'])) {
     $userData = getUserData($pdo);
 
-    $userData = $statement->fetch(PDO::FETCH_ASSOC);
+    if (strlen($_POST['newPassword']) < 5) {
+        $_SESSION['errors'][] = 'Your password needs to be atleast 5 characters long';
+    }
     if (!password_verify($oldPassword, $userData['password'])) {
         $_SESSION['errors'][] = 'You entered the wrong password';
     }
