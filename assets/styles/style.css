@@ -1,6 +1,6 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 :root {
@@ -8,8 +8,8 @@
 }
 
 body {
-  width: 100vw;
-  height: 100%;
+    width: 100vw;
+    height: 100%;
 }
 
 .loginPage {
@@ -29,63 +29,66 @@ body {
 }
 
 .navbarMobileBox {
-  position: fixed;
-  bottom: 0px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 16px 2.5vw;
-  height: 40px;
-  width: 95vw;
-  background-color: #66ccff;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 16px 2.5vw;
+    height: 40px;
+    width: 95vw;
+    background-color: #66ccff;
 }
 
 .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 46px;
-  margin-right: 10px;
-  color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    margin-right: 10px;
+    color: var(--accent-color);
 }
 
 .navList {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: space-evenly;
-  width: 80%;
-  list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+    width: 80%;
+    list-style: none;
 }
 
 .navLinks {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--accent-color);
-  height: 46px;
-  width: 46px;
-  text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent-color);
+    height: 46px;
+    width: 46px;
+    text-decoration: none;
 }
 
 .loginForm {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  width: 20vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
 }
 
 form input {
     margin: 10px;
-    width: 15vw;
+    width: 35vw;
+    background-color: lightgrey;
 }
 
 form button {
     padding: 5px;
     margin: 10px;
-    width: 10vw;
+    width: 15vw;
+    background-color: lightgrey;
+    border: 2px solid darkgrey;
 }
 
 form label {
@@ -93,12 +96,12 @@ form label {
 }
 
 .makeAccount {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
 }
 
 .chooseAvatar {
@@ -107,11 +110,11 @@ form label {
 }
 
 .changeBio {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 20px 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
 }
 
 .changeBio textarea {
@@ -119,28 +122,29 @@ form label {
 }
 
 textarea {
-  height: 90px;
-  width: 300px;
-  resize: none;
-  overflow: visible;
-  line-height: 15px;
+    height: 90px;
+    width: 300px;
+    resize: none;
+    overflow: visible;
+    line-height: 15px;
+    border: 2px solid darkgrey;
 }
 
 .changePassword {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 20px 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
 }
 
 .profileName{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row nowrap;
-  height: 50px;
-  background-color: #66ccff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    height: 50px;
+    background-color: #66ccff;
 }
 
 .profileName a{
@@ -149,32 +153,32 @@ textarea {
 }
 
 .profileBio {
-  height: 110px;
-  width: 300px;
-  font-size: 16px;
-  box-shadow: 0px 0px 6px black;
-  margin: 5px;
-  line-height: 19px;
-  padding: 5px;
+    height: 110px;
+    width: 300px;
+    font-size: 16px;
+    box-shadow: 0px 0px 6px black;
+    margin: 5px;
+    line-height: 19px;
+    padding: 5px;
 }
 
 .profileInfo {
-  display: flex;
+    display: flex;
 }
 
 .profileInfo h4 {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .profileInfo img {
-  height: 100px;
-  width: 100px;
-  object-fit: contain;
-  border-radius: 50%;
-  border: 2px solid lightgrey;
-  box-shadow: 0px 0px 6px black;
-  margin: 7px;
-  font-size: 16px;
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 6px black;
+    margin: 7px;
+    font-size: 16px;
 }
 
 .changeEmail{
@@ -185,36 +189,45 @@ textarea {
     margin: 20px 0;
 }
 .posts {
+    display: flex;
+    flex-flow: row wrap;
     width: 90vw;
     margin: 10px;
     margin-bottom: 50px;
 }
- .posts img {
-     width: 45%;
-     margin: 2.5%;
- }
 
- .previewPosts {
-    display: flex;
-    flex-flow: column nowrap;
- }
 
- .post {
-     margin: 40px;
- }
- .post img {
-     width: 400px;
- }
+.previewPosts {
+    width: 40vw;
+    height: 40vw;
+    margin: 2.5%;
+    overflow: hidden;
 
- .roses {
+
+}
+.previewPosts img {
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.post {
+    margin: 40px;
+    margin-bottom: 100px;
+}
+.post img {
+    width: 100%;
+}
+
+.roses {
     display: flex;
     flex-flow: row nowrap;
- }
+}
 
- .rice {
-     display: flex;
-     flex-flow: row nowrap;
- }
+.rice {
+    display: flex;
+    flex-flow: row nowrap;
+}
 
 .st0{
     fill:#000000;

@@ -35,11 +35,11 @@ if (!isset($_SESSION['user'])) {
     <form class="changeEmail" action="/app/users/update.php" method="post">
         <h1>Change Email</h1>
         <label for="oldEmail">Old Email</label>
-        <input type="email" name="oldEmail" value="">
+        <input type="email" name="oldEmail" value="" required>
         <label for="newEmail">New Email</label>
-        <input type="email" name="newEmail" value="">
+        <input type="email" name="newEmail" value="" required>
         <label for="password">Password</label>
-        <input type="password" name="password" value="">
+        <input type="password" name="password" value="" required>
         <button type="submit" name="button">Change Email</button>
     </form>
 

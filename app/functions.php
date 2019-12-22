@@ -91,3 +91,14 @@ if (!function_exists('getPost')) {
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }
+
+function alreadyLiked(object $pdo, $userId, $postId) {
+    $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id AND user_id = :user_id');
+    $statement->execute([
+        ':post_id' => $postId,
+        ':user_id' => $userId
+    ]);
+
+    $roseData = $statement->fetch(PDO::FETCH_ASSOC);
+    return $roseData;
+}
