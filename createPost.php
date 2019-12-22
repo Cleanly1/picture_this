@@ -2,6 +2,10 @@
 
 require __DIR__ . '/views/header.php';
 
+if (!userLoggedIn()){
+    redirect('/');
+};
+
 ?>
 
 <?php if (isset($_SESSION['errors'])){ ?>

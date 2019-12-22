@@ -1,7 +1,7 @@
 <?php
 
 require __DIR__ . '/views/header.php';
-if (!isset($_SESSION['user'])){
+if (!userLoggedIn()){
     redirect('/');
 };
 ?>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['user'])){
     <?php } ?>
 </div>
 <div class="posts">
-    <?php $posts = getUserPosts($pdo);?>
+    <?php $posts = getUserPosts($pdo, $_SESSION['user']['id']);?>
     <?php if (!empty($posts)){ ?>
         <?php foreach ($posts as $post){ ?>
             <a class="previewPosts" href="/post.php?id=<?php echo $post['id'] ?>">
