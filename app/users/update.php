@@ -37,7 +37,7 @@ if (isset($_POST['bio'],$_SESSION['user'])) {
 if (isset($_FILES['avatar'],$_SESSION['user'])) {
   $avatar = $_FILES['avatar'];
 
-  if ($avatar['type'] != 'image/png' && $avatar['type'] != 'image/jpg') {
+  if ($avatar['type'] != 'image/png' && $avatar['type'] != 'image/jpg' && $avatar['type'] != 'image/jpeg') {
     $_SESSION['errors'][] = 'The image file type is not allowed.';
   }
 
@@ -46,7 +46,11 @@ if (isset($_FILES['avatar'],$_SESSION['user'])) {
   }
 
   if (!isset($_SESSION['errors'])) {
-    $avatarPath = '/uploads/' . uniqid() . '-avatar.jpg';
+    if ($avatar['type'] == 'image/jpg' || $avatar['type'] == 'image/jpeg') {
+        $avatarPath = '/uploads/' . uniqid() . '-avatar.jpg';
+    }else {
+        $avatarPath = '/uploads/' . uniqid() . '-avatar.png';
+    }
     move_uploaded_file($avatar['tmp_name'], '../..' . $avatarPath);
     $statement = $pdo->prepare('UPDATE users SET avatar_image = :avatar_image WHERE id = :id');
     $statement->execute([

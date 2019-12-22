@@ -199,6 +199,23 @@ textarea {
     flex-flow: column nowrap;
  }
 
+ .post {
+     margin: 40px;
+ }
+ .post img {
+     width: 400px;
+ }
+
+ .roses {
+    display: flex;
+    flex-flow: row nowrap;
+ }
+
+ .rice {
+     display: flex;
+     flex-flow: row nowrap;
+ }
+
 .st0{
     fill:#000000;
     stroke:#000000;

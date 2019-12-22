@@ -26,8 +26,8 @@ if (!isset($_SESSION['user'])) {
 
     <form class="chooseAvatar" action="/app/users/update.php" method="post" enctype="multipart/form-data">
         <h1>Choose/change Avatar Image</h1>
-        <label for="avatar">Choose a Avatar Image to upload</label>
-        <input type="file" accept="image/jpg,image/png" name="avatar" id="avatar" required>
+        <label for="avatar">Choose a Avatar Image to upload(You can only use .jpg/.jpeg or .png images)</label>
+        <input type="file" accept="image/jpg" name="avatar" id="avatar" required>
         <button type="submit">Upload</button>
     </form>
 

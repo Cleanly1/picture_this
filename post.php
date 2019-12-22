@@ -12,6 +12,15 @@ if (isset($_GET['id'])) {
 
 <div class="post">
     <img src="<?php echo $post['post_image'] ?>" alt="">
+    <p><?php echo $post['post_text'] ?></p>
+        <div class="roses">
+            <p><?php echo $post['roses'] ?></p>
+            <button type="button" name="button">Rose this post</button>
+        </div>
+        <div class="rice">
+            <p><?php echo $post['rice'] ?></p>
+            <button type="button" name="button">Rice this post</button>
+        </div>
 </div>
 
 

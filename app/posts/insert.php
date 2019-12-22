@@ -24,7 +24,7 @@ if (isset($_FILES['postImage'])) {
         $publishedDate = date('d m Y H:i:s');
 
         move_uploaded_file($postImage['tmp_name'], '../..' . $imagePath);
-        $statement = $pdo->prepare('INSERT INTO posts (user_id, post_image, post_text, published) VALUES(:user_id, :post_image, :post_text, :published)');
+        $statement = $pdo->prepare('INSERT INTO posts (user_id, post_image, post_text, roses, rice, published) VALUES(:user_id, :post_image, :post_text, 0, 0, :published)');
         if (!$statement) {
             die(var_dump($pdo->errorInfo()));
         }
