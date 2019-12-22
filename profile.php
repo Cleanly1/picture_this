@@ -35,7 +35,14 @@ if (!isset($_SESSION['user'])){
         <p><?php echo nl2br($_SESSION['user']['bio']) ?></p>
     <?php } ?>
 </div>
-
+<div class="posts">
+    <?php $posts = getUserPosts($pdo); ?>
+    <?php foreach ($posts as $post): ?>
+        <a class="previewPosts" href="/post.php?id=<?php echo $post['id'] ?>">
+            <img src="<?php echo $post['post_image'] ?>" alt="">
+        </a>
+    <?php endforeach; ?>
+</div>
 
 <?php
 

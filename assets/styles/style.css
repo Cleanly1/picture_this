@@ -184,6 +184,20 @@ textarea {
     align-items: flex-start;
     margin: 20px 0;
 }
+.posts {
+    width: 90vw;
+    margin: 10px;
+    margin-bottom: 50px;
+}
+ .posts img {
+     width: 45%;
+     margin: 2.5%;
+ }
+
+ .previewPosts {
+    display: flex;
+    flex-flow: column nowrap;
+ }
 
 .st0{
     fill:#000000;

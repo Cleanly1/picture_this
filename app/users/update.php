@@ -41,13 +41,13 @@ if (isset($_FILES['avatar'],$_SESSION['user'])) {
     $_SESSION['errors'][] = 'The image file type is not allowed.';
   }
 
-  if ($avatar['size'] > 2000000) {
+  if ($avatar['size'] > 2097152) {
     $_SESSION['errors'][] = 'The uploaded file exceeded the file size limit.';
   }
 
-  if (empty($errors)) {
-    $avatarPath = '/uploads/' . $_SESSION['user']['id'] . '-avatar.jpg';
-    move_uploaded_file($avatar['tmp_name'], '../../uploads/' . $_SESSION['user']['id'] . '-avatar.jpg');
+  if (!isset($_SESSION['errors'])) {
+    $avatarPath = '/uploads/' . uniqid() . '-avatar.jpg';
+    move_uploaded_file($avatar['tmp_name'], '../..' . $avatarPath);
     $statement = $pdo->prepare('UPDATE users SET avatar_image = :avatar_image WHERE id = :id');
     $statement->execute([
         ':avatar_image' => $avatarPath,

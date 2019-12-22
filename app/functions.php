@@ -70,3 +70,24 @@ if (!function_exists('getUserData')) {
 
 
 }
+
+if (!function_exists('getUserPosts')) {
+    function getUserPosts(object $pdo):array {
+        $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :id');
+        $statement->execute([
+            ':id' => $_SESSION['user']['id']
+        ]);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+
+if (!function_exists('getPost')) {
+    function getPost(object $pdo, int $id):array {
+        $statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
+        $statement->execute([
+            ':id' => $id
+        ]);
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+}
