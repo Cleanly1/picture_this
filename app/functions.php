@@ -101,15 +101,16 @@ if (!function_exists('getPost')) {
     }
 }
 if (!function_exists('updatePost')) {
-    function updatePost(object $pdo, int $id, array $postData, int $updateOption):void {
+    function updatePost(object $pdo, int $postId, array $postData, int $updateOption):void {
         $roses = $postData['roses'];
         $statement = $pdo->prepare('UPDATE posts SET roses = :roses WHERE id = :id');
         if ($updateOption === 0) {
-            $roses--;
+            --$roses;
         }
         if ($updateOption === 1) {
-            $roses++;
+            ++$roses;
         }
+
             $statement->execute([
                 ':roses' => $roses,
                 ':id' => $postId

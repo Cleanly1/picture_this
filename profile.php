@@ -4,39 +4,40 @@ require __DIR__ . '/views/header.php';
 if (!userLoggedIn()){
     redirect('/');
 };
+$userId = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+if ($_SESSION['user']['id'] !== $userId) {
+    $userData = getUserData($pdo, $userId);
+} else {
+    $userData = $_SESSION['user'];
+};
 ?>
 
 <div class="profileName">
-    <h1><?php echo $_SESSION['user']['username'] ?></h1>
-    <a href="/settings.php" class="navLinks" ><?xml version="1.0" encoding="utf-8"?>
-        <!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
-        <g>
-            <path class="st0" d="M219.5,396.5c0,0,5-31,19-46l-38-74c0,0-6-13,0-20c0,0,28-46,75-76c0,0,12-4,20,0l73,38c0,0,9-9,49-20l25-80
-            c0,0,2-11,17-14c0,0,49-8,97-1c0,0,15,4,19,14l27,80c0,0,39,13,48,20l73-37c0,0,8-4,22,0c0,0,56,39,74,76c0,0,4,13,0,19l-38,73
-            c0,0,19,33,19,48l81,27c0,0,14,4,15,21c0,0,6,44,0,92c0,0-5,19-15,20l-81,26c0,0-4,25-19,47l38,75c0,0,4,10,0,19c0,0-16,36-72,73
-            c0,0-7,6-23,3l-74-39c0,0-15,14-48,20l-26,81c0,0-4,12-18,14c0,0-54,11-100,0c0,0-12-6-15-14s-25-79-25-79s-33-8-49-22l-72,38
-            c0,0-12,6-22,0c0,0-29-9-75-75c0,0-5-9,1-18l37-74c0,0-16-23-19-49l-82-26c0,0-12-6-14-18c0,0-8-42,0-94c0,0,0-12,15-20
-            L219.5,396.5z"/>
-            <path class="st0 st1" d="M315.5,490.25c0,0,0-183.76,195-195.75c0,0,181-3.99,195,195.75c0,0-1,183.76-196,194.75
-            C509.5,685,327.5,684,315.5,490.25z"/>
-        </g>
-    </svg></a>
+    <h1><?php echo $userData['username'] ?></h1>
+    <?php if ($_SESSION['user']['id'] === $userId){ ?>
+        <a href="/settings.php" class="navLinks" >
+            <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="14">
+                    <path fill="#000"d="m219.5 396.5s5-31 19-46l-38-74s-6-13 0-20c0 0 28-46 75-76 0 0 12-4 20 0l73 38s9-9 49-20l25-80s2-11 17-14c0 0 49-8 97-1 0 0 15 4 19 14l27 80s39 13 48 20l73-37s8-4 22 0c0 0 56 39 74 76 0 0 4 13 0 19l-38 73s19 33 19 48l81 27s14 4 15 21c0 0 6 44 0 92 0 0-5 19-15 20l-81 26s-4 25-19 47l38 75s4 10 0 19c0 0-16 36-72 73 0 0-7 6-23 3l-74-39s-15 14-48 20l-26 81s-4 12-18 14c0 0-54 11-100 0 0 0-12-6-15-14s-25-79-25-79-33-8-49-22l-72 38s-12 6-22 0c0 0-29-9-75-75 0 0-5-9 1-18l37-74s-16-23-19-49l-82-26s-12-6-14-18c0 0-8-42 0-94 0 0 0-12 15-20z"/>
+                    <path fill="#66ccff" d="m315.5 490.25s0-183.76 195-195.75c0 0 181-3.99 195 195.75 0 0-1 183.76-196 194.75 0 0-182-1-194-194.75z"/>
+                </g>
+            </svg>
+        </a>
+    <?php }; ?>
 </div>
 <div class="profileInfo">
-    <img src="<?php echo $_SESSION['user']['avatar'] ?>" alt="">
-    <h4><?php echo $_SESSION['user']['username'] ?></h4>
+    <img src="<?php echo $userData['avatar_image'] ?>" alt="">
+    <h4><?php echo $userData['username'] ?></h4>
 </div>
 <div class="profileBio">
-    <?php if ($_SESSION['user']['bio'] === ""){ ?>
+    <?php if ($userData['biography'] === ""){ ?>
         <p>You can change your bio in settings</p>
     <?php }else { ?>
-        <p><?php echo nl2br($_SESSION['user']['bio']) ?></p>
+        <p><?php echo nl2br($userData['biography']) ?></p>
     <?php } ?>
 </div>
 <div class="posts">
-    <?php $posts = getUserPosts($pdo, $_SESSION['user']['id']);?>
+    <?php $posts = getUserPosts($pdo, $userData['id']);?>
     <?php if (!empty($posts)){ ?>
         <?php foreach ($posts as $post){ ?>
             <a class="previewPosts" href="/post.php?id=<?php echo $post['id'] ?>">

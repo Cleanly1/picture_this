@@ -21,8 +21,8 @@ if (isset($_POST['email'], $_POST['password'])) {
             'id' => $user['id'],
             'username' => $user['username'],
             'email' => $user['email'],
-            'bio' => $user['biography'],
-            'avatar' => $user['avatar_image']
+            'biography' => $user['biography'],
+            'avatar_image' => $user['avatar_image']
         ];
         unset($_SESSION['errors']);
     } else {
@@ -34,4 +34,3 @@ if (isset($_POST['email'], $_POST['password'])) {
 }
 
 redirect('/');
-
