@@ -11,16 +11,13 @@ if (!userLoggedIn()) {
 <div class="settingsPage">
 
     <?php if (isset($_SESSION['errors'])){ ?>
-        <?php foreach ($_SESSION['errors'] as $error){ ?>
-            <p><?php echo $error ?></p>
-        <?php }; ?>
-        <?php unset($_SESSION['errors']) ?>
+        <?php showErrors(); ?>
     <?php }; ?>
 
     <form class="changeBio" action="/app/users/update.php" method="post">
         <h1>Update Bio</h1>
         <label for="changeBio">Bio</label>
-        <textarea name="bio" rows="5" cols="32" wrap="hard"><?php echo $_SESSION['user']['bio'] ?></textarea>
+        <textarea name="bio" rows="5" cols="32" wrap="hard"><?php echo $_SESSION['user']['biography'] ?></textarea>
         <button type="submit" name="button">Update Bio</button>
     </form>
 

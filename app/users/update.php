@@ -25,7 +25,7 @@ if (isset($_POST['bio'],$_SESSION['user'])) {
             ':biography' => $updatedBio,
             ':id' => $_SESSION['user']['id']
         ]);
-        $_SESSION['user']['bio'] = $updatedBio;
+        $_SESSION['user']['biography'] = $updatedBio;
         // if (!$hej) {
         //     die(var_dump($pdo->errorInfo()));
         // }
@@ -57,7 +57,7 @@ if (isset($_FILES['avatar'],$_SESSION['user'])) {
         ':avatar_image' => $avatarPath,
         ':id' => $_SESSION['user']['id']
     ]);
-    $_SESSION['user']['avatar'] = $avatarPath;
+    $_SESSION['user']['avatar_image'] = $avatarPath;
     redirect('/profile.php');
   }
 }

@@ -16,7 +16,7 @@ if (!userLoggedIn()){
 <?php }; ?>
 <form class="createPost" action="/app/posts/create.php" method="post" enctype="multipart/form-data">
     <label for="postImage">Choose an image to upload</label>
-    <input type="file" accept="image/jpg" name="postImage" id="postImage" required>
+    <input type="file" accept="image/jpg, image/jpeg" name="postImage" id="postImage" required>
     <label for="description">Description</label>
     <textarea name="description" rows="8" cols="80" wrap="hard"></textarea>
     <button type="submit">Upload</button>

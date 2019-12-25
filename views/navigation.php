@@ -7,7 +7,7 @@
         <?php if (userLoggedIn()){ ?>
             <li class="navItem"><a href="/createPost.php" class="navLinks">New Post</a></li>
             <li class="navItem"><a href="/app/users/logout.php" class="navLinks">Logout</a></li>
-            <li class="navItem"><a href="/profile.php?id=<?php echo $_SESSION['user']['id'] ?>" class="navLinks">Profile</a></li>
+            <li class="navItem"><a href="/profile.php?username=<?php echo $_SESSION['user']['username'] ?>" class="navLinks">Profile</a></li>
         <?php }else { ?>
             <li class="navItem"><a href="/login.php" class="navLinks">Login</a></li>
         <?php } ?>

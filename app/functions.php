@@ -58,14 +58,14 @@ if (!function_exists('alreadyExistInDatabase')) {
 
 if (!function_exists('getUserData')) {
     /**
-     * Gets the specified users data
-     * @param  object $pdo [database]
-     * @return array       [user data]
-     */
-    function getUserData(object $pdo, int $id):array {
-        $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
+    * Gets the specified users data
+    * @param  object $pdo [database]
+    * @return array       [user data]
+    */
+    function getUserData(object $pdo, string $username) {
+        $statement = $pdo->prepare('SELECT * FROM users WHERE username = :username');
         $statement->execute([
-            ':id' => $id
+            ':username' => $username
         ]);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
@@ -77,10 +77,11 @@ if (!function_exists('getUserData')) {
 
 if (!function_exists('getUserPosts')) {
     /**
-     * Gets an users posts
-     * @param  object $pdo [description]
-     * @return array       [description]
-     */
+    * Gets an users posts
+    * @param  object $pdo [database]
+    * @param  int $id      The selected user
+    * @return array       [the users posts]
+    */
     function getUserPosts(object $pdo, int $id):array {
         $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :id');
         $statement->execute([
@@ -92,7 +93,13 @@ if (!function_exists('getUserPosts')) {
 
 
 if (!function_exists('getPost')) {
-    function getPost(object $pdo, int $id):array {
+    /**
+    * Gets the selected post from the database
+    * @param  object $pdo [Database]
+    * @param  int    $id  [id of the post]
+    * @return array       [post data]
+    */
+    function getPostData(object $pdo, int $id):array {
         $statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
         $statement->execute([
             ':id' => $id
@@ -100,8 +107,8 @@ if (!function_exists('getPost')) {
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }
-if (!function_exists('updatePost')) {
-    function updatePost(object $pdo, int $postId, array $postData, int $updateOption):void {
+if (!function_exists('updateRose')) {
+    function updateRose(object $pdo, int $postId, array $postData, int $updateOption):void {
         $roses = $postData['roses'];
         $statement = $pdo->prepare('UPDATE posts SET roses = :roses WHERE id = :id');
         if ($updateOption === 0) {
@@ -111,10 +118,10 @@ if (!function_exists('updatePost')) {
             ++$roses;
         }
 
-            $statement->execute([
-                ':roses' => $roses,
-                ':id' => $postId
-            ]);
+        $statement->execute([
+            ':roses' => $roses,
+            ':id' => $postId
+        ]);
 
     }
 }
@@ -128,4 +135,14 @@ function alreadyLiked(object $pdo, $userId, $postId) {
 
     $roseData = $statement->fetch(PDO::FETCH_ASSOC);
     return $roseData;
+}
+
+
+function showErrors() {
+    if (isset($_SESSION['errors'])){
+        foreach ($_SESSION['errors'] as $error){
+            echo $error;
+        };
+        unset($_SESSION['errors']);
+    };
 }

@@ -6,9 +6,10 @@ if (!userLoggedIn()){
     redirect('/');
 };
 if (isset($_GET['rose'])) {
+
     $postId = filter_var($_GET['rose'], FILTER_SANITIZE_NUMBER_INT);
 
-    $postData = getPost($pdo, $postId);
+    $postData = getPostData($pdo, $postId);
 
     $statement = $pdo->prepare('INSERT INTO roses (user_id, post_id) VALUES(:user_id, :post_id)');
     $statement->execute([
@@ -16,13 +17,14 @@ if (isset($_GET['rose'])) {
         ':post_id' => $postId,
     ]);
 
-    updatePost($pdo, $postId, $postData, 1);
+    updateRose($pdo, $postId, $postData, 1);
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
 
 
-    redirect('/post.php?id='.$postId);
+    redirect('/post.php?id=' . $postId);
 }
+
 redirect('/');
