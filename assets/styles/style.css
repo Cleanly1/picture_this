@@ -5,6 +5,7 @@
 
 :root {
     --accent-color: black;
+    --picture-this-blue: #66ccff;
 }
 
 body {
@@ -123,7 +124,7 @@ form label {
 
 textarea {
     height: 90px;
-    width: 300px;
+    width: 250px;
     resize: none;
     overflow: visible;
     line-height: 15px;
@@ -144,7 +145,7 @@ textarea {
     align-items: center;
     flex-flow: row nowrap;
     height: 50px;
-    background-color: #66ccff;
+    background-color: var(--picture-this-blue);
 }
 
 .profileName a{
@@ -154,7 +155,7 @@ textarea {
 
 .profileBio {
     height: 110px;
-    width: 300px;
+    width: 250px;
     font-size: 16px;
     box-shadow: 0px 0px 6px black;
     margin: 5px;
@@ -164,16 +165,15 @@ textarea {
 
 .profileInfo {
     display: flex;
-}
-
-.profileInfo h4 {
-    font-size: 18px;
+    margin-top: 10px;
+    justify-content: space-around;
 }
 
 .profileInfo img {
     height: 100px;
     width: 100px;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: 52%;
     border-radius: 50%;
     border: 2px solid lightgrey;
     box-shadow: 0px 0px 6px black;
@@ -181,18 +181,25 @@ textarea {
     font-size: 16px;
 }
 
-.changeEmail{
+.changeEmail {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
     margin: 20px 0;
 }
+
+.profile {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
 .posts {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
     width: 90vw;
-    margin: 10px;
+    margin: 5vw;
     margin-bottom: 50px;
 }
 
@@ -200,11 +207,11 @@ textarea {
 .previewPosts {
     width: 40vw;
     height: 40vw;
-    margin: 2.5%;
     overflow: hidden;
-
+    box-shadow: 2px 2px 2px black;
 
 }
+
 .previewPosts img {
     height: 100%;
     object-fit: contain;
@@ -220,11 +227,6 @@ textarea {
 }
 
 .roses {
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.rice {
     display: flex;
     flex-flow: row nowrap;
 }

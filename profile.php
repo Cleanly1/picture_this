@@ -12,6 +12,7 @@ if ($_SESSION['user']['username'] !== $username) {
     $userData = $_SESSION['user'];
 };
 ?>
+<div class="profile">
 
 <div class="profileName">
     <h1><?php echo $userData['username'] ?></h1>
@@ -28,15 +29,15 @@ if ($_SESSION['user']['username'] !== $username) {
 </div>
 <div class="profileInfo">
     <img src="<?php echo $userData['avatar_image'] ?>" alt="">
-    <h4><?php echo $userData['username'] ?></h4>
+    <div class="profileBio">
+        <?php if ($userData['biography'] === ""){ ?>
+            <p>You can change your bio in settings</p>
+        <?php }else { ?>
+            <p><?php echo nl2br($userData['biography']) ?></p>
+        <?php } ?>
+    </div>
 </div>
-<div class="profileBio">
-    <?php if ($userData['biography'] === ""){ ?>
-        <p>You can change your bio in settings</p>
-    <?php }else { ?>
-        <p><?php echo nl2br($userData['biography']) ?></p>
-    <?php } ?>
-</div>
+
 <div class="posts">
     <?php $posts = getUserPosts($pdo, $userData['id']);?>
     <?php if (!empty($posts)){ ?>
@@ -50,6 +51,7 @@ if ($_SESSION['user']['username'] !== $username) {
     <?php } ?>
 </div>
 
+</div>
 <?php
 
 require __DIR__ . '/views/footer.php';

@@ -1,5 +1,3 @@
-
-//
 // window.document.querySelector('.changeBio').querySelector('textarea').addEventListener('keydown', function(){
 //     let lines = 0;
 //

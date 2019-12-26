@@ -4,10 +4,7 @@ require __DIR__ . '/views/header.php';
 
  ?>
  <?php if (isset($_SESSION['errors'])){ ?>
-   <?php foreach ($_SESSION['errors'] as $error){ ?>
-     <p><?php echo $error ?></p>
-   <?php }; ?>
-   <?php unset($_SESSION['errors']) ?>
+   <?php showErrors(); ?>
  <?php }; ?>
  <div class="loginPage">
  <form class="loginForm" action="app/users/login.php" method="post">

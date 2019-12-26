@@ -60,6 +60,7 @@ if (!function_exists('getUserData')) {
     /**
     * Gets the specified users data
     * @param  object $pdo [database]
+    * @param  string $username [username]
     * @return array       [user data]
     */
     function getUserData(object $pdo, string $username) {
@@ -108,6 +109,13 @@ if (!function_exists('getPost')) {
     }
 }
 if (!function_exists('updateRose')) {
+    /**
+    * Updates the roses of a post based on the update option
+    * @param object $pdo          [database]
+    * @param int    $postId       [The rosed post]
+    * @param array  $postData     [The post data]
+    * @param int    $updateOption [The update option]
+    */
     function updateRose(object $pdo, int $postId, array $postData, int $updateOption):void {
         $roses = $postData['roses'];
         $statement = $pdo->prepare('UPDATE posts SET roses = :roses WHERE id = :id');
@@ -126,23 +134,30 @@ if (!function_exists('updateRose')) {
     }
 }
 
-function alreadyLiked(object $pdo, $userId, $postId) {
-    $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id AND user_id = :user_id');
-    $statement->execute([
-        ':post_id' => $postId,
-        ':user_id' => $userId
-    ]);
+if (!function_exists('alreadyLiked')) {
 
-    $roseData = $statement->fetch(PDO::FETCH_ASSOC);
-    return $roseData;
+    function alreadyLiked(object $pdo, $userId, $postId) {
+        $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id AND user_id = :user_id');
+        $statement->execute([
+            ':post_id' => $postId,
+            ':user_id' => $userId
+        ]);
+
+        $roseData = $statement->fetch(PDO::FETCH_ASSOC);
+        return $roseData;
+    }
 }
 
-
-function showErrors() {
-    if (isset($_SESSION['errors'])){
-        foreach ($_SESSION['errors'] as $error){
-            echo $error;
+if (!function_exists('showErrors')) {
+    /**
+     * Shows the errors for the user
+     */
+    function showErrors():void {
+        if (isset($_SESSION['errors'])){
+            foreach ($_SESSION['errors'] as $error){
+                echo $error;
+            };
+            unset($_SESSION['errors']);
         };
-        unset($_SESSION['errors']);
-    };
+    }
 }

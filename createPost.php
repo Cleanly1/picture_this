@@ -9,10 +9,7 @@ if (!userLoggedIn()){
 ?>
 
 <?php if (isset($_SESSION['errors'])){ ?>
-    <?php foreach ($_SESSION['errors'] as $error){ ?>
-        <p><?php echo $error ?></p>
-    <?php }; ?>
-    <?php unset($_SESSION['errors']) ?>
+    <?php showErrors(); ?>
 <?php }; ?>
 <form class="createPost" action="/app/posts/create.php" method="post" enctype="multipart/form-data">
     <label for="postImage">Choose an image to upload</label>
