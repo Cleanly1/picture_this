@@ -4,13 +4,20 @@ require __DIR__ . '/views/header.php';
 if (!userLoggedIn()){
     redirect('/');
 };
-$username = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
-if ($_SESSION['user']['username'] !== $username) {
-    $userData = getUserData($pdo, $username);
 
+$username = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
+// if ($username == "") {
+//     redirect('/');
+// }
+if ($_SESSION['user']['username'] !== $username && $username != "") {
+    $userData = getUserData($pdo, $username);
 } else {
     $userData = $_SESSION['user'];
+    $username = $userData['username'];
 };
+
+isset($_SERVER['QUERY_STRING']) === true ? $queryString = explode("=" , $_SERVER['QUERY_STRING'])[1] : $queryString = '';
+
 ?>
 <div class="profile">
 
@@ -30,7 +37,7 @@ if ($_SESSION['user']['username'] !== $username) {
 <div class="profileInfo">
     <img src="<?php echo $userData['avatar_image'] ?>" alt="">
     <div class="profileBio">
-        <?php if ($userData['biography'] === ""){ ?>
+        <?php if ($userData['biography'] === "" && $queryString === $_SESSION['user']['username']){  ?>
             <p>You can change your bio in settings</p>
         <?php }else { ?>
             <p><?php echo nl2br($userData['biography']) ?></p>
@@ -39,15 +46,17 @@ if ($_SESSION['user']['username'] !== $username) {
 </div>
 
 <div class="posts">
-    <?php $posts = getUserPosts($pdo, $userData['id']);?>
+    <?php $posts = getUserPosts($pdo, $userData['id']); ?>
     <?php if (!empty($posts)){ ?>
         <?php foreach ($posts as $post){ ?>
             <a class="previewPosts" href="/post.php?id=<?php echo $post['id'] ?>">
                 <img src="<?php echo $post['post_image'] ?>" alt="">
             </a>
         <?php }; ?>
-    <?php }else { ?>
+    <?php }elseif(empty($posts) && $queryString === $_SESSION['user']['username']) { ?>
         <h2>You have no posts, maybe consider adding some</h2>
+        <p>Great idea? Just press here</p>
+        <a href="/createPost.php" class="navLinks">New Post</a>
     <?php } ?>
 </div>
 

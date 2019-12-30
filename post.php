@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
     <?php if (isset($_SESSION['errors'])){ ?>
         <?php showErrors() ?>
     <?php }; ?>
+
     <img src="<?php echo $post['post_image'] ?>" alt="">
     <?php if (isset($_POST['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
         <form class="createPost" action="/app/posts/edit.php" method="post" enctype="multipart/form-data">
@@ -34,10 +35,13 @@ if (isset($_GET['id'])) {
     <?php }; ?>
 
     <?php if (!alreadyLiked($pdo, $_SESSION['user']['id'], $postId)){ ?>
+
         <form action="/app/posts/rose.php" class="roses">
             <p><?php echo $post['roses'] ?></p>
             <button type="submit" name="rose" value="<?php echo $postId ?>">Rose this post</button>
+
         <?php }else { ?>
+
             <form action="/app/posts/removeRose.php" class="roses">
                 <p><?php echo $post['roses'] ?></p>
                 <button type="submit" name="rose" value="<?php echo $postId ?>">Remove rose</button>
