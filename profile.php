@@ -47,16 +47,20 @@ isset($_SERVER['QUERY_STRING']) === true ? $queryString = explode("=" , $_SERVER
 
 <div class="posts">
     <?php $posts = getUserPosts($pdo, $userData['id']); ?>
-    <?php if (!empty($posts)){ ?>
+    <?php if (empty($posts) && $queryString === $_SESSION['user']['username']){ ?>
+
+            <h2>You have no posts, maybe consider adding some</h2>
+            <p>Great idea? Just press here</p>
+            <a href="/createPost.php" class="navLinks">New Post</a>
+
+    <?php } else { ?>
+
         <?php foreach ($posts as $post){ ?>
             <a class="previewPosts" href="/post.php?id=<?php echo $post['id'] ?>">
                 <img src="<?php echo $post['post_image'] ?>" alt="">
             </a>
         <?php }; ?>
-    <?php }elseif(empty($posts) && $queryString === $_SESSION['user']['username']) { ?>
-        <h2>You have no posts, maybe consider adding some</h2>
-        <p>Great idea? Just press here</p>
-        <a href="/createPost.php" class="navLinks">New Post</a>
+
     <?php } ?>
 </div>
 

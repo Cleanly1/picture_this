@@ -15,6 +15,20 @@ if (isset($_GET['id'])) {
         <?php showErrors() ?>
     <?php }; ?>
 
+    <?php if ($_SESSION['user']['id'] === $post['user_id'] && !isset($_POST['edit'])){ ?>
+        <div class="dropdownPostSettings">
+            <p>Post settings</p>
+            <div class="postSettings">
+                <form class="" action="post.php?id=<?php echo $postId ?>" method="post">
+                    <button type="submit" name="edit">Edit post</button>
+                </form>
+                <form class="" action="/app/posts/delete.php" method="post">
+                    <button type="submit" name="delete" value="<?php echo $postId ?>">Delete post</button>
+                </form>
+            </div>
+        </div>
+    <?php }; ?>
+
     <img src="<?php echo $post['post_image'] ?>" alt="">
     <?php if (isset($_POST['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
         <form class="createPost" action="/app/posts/edit.php" method="post" enctype="multipart/form-data">
@@ -25,14 +39,6 @@ if (isset($_GET['id'])) {
     <?php }else { ?>
         <p><?php echo nl2br($post['post_text']) ?></p>
     <?php } ?>
-    <?php if ($_SESSION['user']['id'] === $post['user_id'] && !isset($_POST['edit'])){ ?>
-        <form class="" action="post.php?id=<?php echo $postId ?>" method="post">
-            <button type="submit" name="edit">Edit post</button>
-        </form>
-        <form class="" action="/app/posts/delete.php" method="post">
-            <button type="submit" name="delete" value="<?php echo $postId ?>">Delete post</button>
-        </form>
-    <?php }; ?>
 
     <?php if (!alreadyLiked($pdo, $_SESSION['user']['id'], $postId)){ ?>
 
