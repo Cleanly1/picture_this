@@ -116,8 +116,8 @@ if (!function_exists('updateRose')) {
     * @param array  $postData     [The post data]
     * @param int    $updateOption [The update option]
     */
-    function updateRose(object $pdo, int $postId, array $postData, int $updateOption):void {
-        $roses = $postData['roses'];
+    function updateRose(object $pdo, int $postId, int $roses, int $updateOption):void {
+
         $statement = $pdo->prepare('UPDATE posts SET roses = :roses WHERE id = :id');
         if ($updateOption === 0) {
             --$roses;
@@ -136,7 +136,7 @@ if (!function_exists('updateRose')) {
 
 if (!function_exists('alreadyLiked')) {
 
-    function alreadyLiked(object $pdo, $userId, $postId) {
+    function alreadyLiked(object $pdo, int $userId, int $postId) {
         $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id AND user_id = :user_id');
         $statement->execute([
             ':post_id' => $postId,
@@ -160,4 +160,14 @@ if (!function_exists('showErrors')) {
             unset($_SESSION['errors']);
         };
     }
+}
+
+function countRoses(object $pdo, int $postId) {
+    $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id');
+    $statement->execute([
+        ':post_id' => $postId,
+    ]);
+    $roses = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return count($roses);
 }

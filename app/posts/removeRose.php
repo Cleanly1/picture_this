@@ -17,14 +17,14 @@ if (isset($_GET['rose'])) {
         ':post_id' => $postId,
     ]);
 
-    updateRose($pdo, $postId, $postData, 0);
-
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
 
+    updateRose($pdo, $postId, countRoses($pdo, $postId), 0);
 
-    redirect('/post.php?id=' . $postId);
+    $roses = countRoses($pdo, $postId);
+    $roses = json_encode($roses);
+    header('Content-Type: application/json');
+    echo $roses;
 }
-
-redirect('/');

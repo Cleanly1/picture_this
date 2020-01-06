@@ -44,9 +44,12 @@ isset($_SERVER['QUERY_STRING']) === true ? $queryString = explode("=" , $_SERVER
         <?php } ?>
     </div>
 </div>
+<form class="" action="/app/users/follow.php" method="post">
+    <button type="submit" value="<?php echo $userData['id'] ?>" name="button">Follow</button>
+</form>
 
 <div class="posts">
-    <?php $posts = getUserPosts($pdo, $userData['id']); ?>
+    <?php $posts = array_reverse(getUserPosts($pdo, $userData['id'])); ?>
     <?php if (empty($posts) && $queryString === $_SESSION['user']['username']){ ?>
 
             <h2>You have no posts, maybe consider adding some</h2>

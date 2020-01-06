@@ -1,15 +1,47 @@
-// window.document.querySelector('.changeBio').querySelector('textarea').addEventListener('keydown', function(){
-//     let lines = 0;
-//
-//     window.document.querySelector('.changeBio').querySelector('textarea').innerHTML.split('').forEach(function(letter){
-//         if (letter === '\n') {
-//             lines++;
-//         }
-//         if (lines === 5) {
-//             console.log('hej');
-//         }
-//         console.log(lines)
-//
-//     })
-//
-// })
+
+// if (window.location.href.indexOf('post.php') > -1) {
+
+    const roseForms = document.querySelectorAll('.roses');
+
+
+roseForms.forEach(function(roseForm){
+
+    const roseButton = roseForm.querySelectorAll('button');
+
+    roseForm.addEventListener('submit', function(){
+
+        event.preventDefault();
+        console.log(roseButton)
+
+
+        var formData = new FormData(roseForm);
+        if (roseButton[0].className !== 'hidden') {
+
+            fetch('app/posts/rose.php?rose=' + roseButton.value, {
+                method: 'POST',
+                body: formData
+            }).then(function(response){
+                return response.json();
+            }).then(function(roses){
+                roseForm.querySelector('p').textContent = roses;
+                roseButton[0].classList.add('hidden');
+                roseButton[1].classList.remove('hidden');
+            })
+
+        }else if (roseButton[1].className !== 'hidden') {
+
+            fetch('app/posts/removeRose.php?rose=' + roseButton.value, {
+                method: 'POST',
+                body: formData
+            }).then(function(response){
+                return response.json();
+            }).then(function(roses){
+                roseForm.querySelector('p').textContent = roses;
+                roseButton[1].classList.add('hidden');
+                roseButton[0].classList.remove('hidden');
+            })
+        }
+
+    })
+})
+// }

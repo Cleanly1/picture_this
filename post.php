@@ -40,19 +40,10 @@ if (isset($_GET['id'])) {
         <p><?php echo nl2br($post['post_text']) ?></p>
     <?php } ?>
 
-    <?php if (!alreadyLiked($pdo, $_SESSION['user']['id'], $postId)){ ?>
-
-        <form action="/app/posts/rose.php" class="roses">
-            <p><?php echo $post['roses'] ?></p>
-            <button type="submit" name="rose" value="<?php echo $postId ?>">Rose this post</button>
-
-        <?php }else { ?>
-
-            <form action="/app/posts/removeRose.php" class="roses">
-                <p><?php echo $post['roses'] ?></p>
-                <button type="submit" name="rose" value="<?php echo $postId ?>">Remove rose</button>
-
-            <?php } ?>
+        <form class="roses" method="post">
+            <p><?php echo countRoses($pdo, $postId) ?></p>
+            <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? '' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $postId ?>">Rose this post</button>
+            <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? '' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $postId ?>">Remove rose</button>
         </form>
     </div>
 

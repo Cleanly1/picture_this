@@ -15,7 +15,7 @@ if (isset($_POST['delete'])) {
     }
 
     if (!isset($_SESSION['errors'])) {
-        // die(var_dump($post['post_image']));
+
         unlink('../..' . $post['post_image']);
 
         $statement = $pdo->prepare('DELETE FROM posts WHERE id = :id AND user_id = :user_id');

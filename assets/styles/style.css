@@ -8,6 +8,10 @@
     --picture-this-blue: #66ccff;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     width: 100vw;
     height: 100%;
@@ -236,12 +240,29 @@ textarea {
     width: 100%;
 }
 
+.feedPosts {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 90vw;
+    margin: 2.5vw;
+}
+
+.feedPosts img {
+    width: 100%;
+    margin-top: 20px;
+}
+
 .dropdownPostSettings {
     position: absolute;
     display: inline-block;
     top: calc(40px - 18px);
     right: 40px;
     width: 120px;
+}
+
+.dropdownFeedSettings {
+    position: absolute;
+    display: inline-block;
 }
 
 .postSettings {
@@ -270,6 +291,10 @@ textarea {
 }
 
 .dropdownPostSettings:hover .postSettings {
+    display: block;
+}
+
+.dropdownFeedSettings:hover .postSettings {
     display: block;
 }
 
