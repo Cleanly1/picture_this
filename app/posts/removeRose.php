@@ -21,7 +21,7 @@ if (isset($_GET['rose'])) {
         die(var_dump($pdo->errorInfo()));
     }
 
-    updateRose($pdo, $postId, countRoses($pdo, $postId), 0);
+    updateRose($pdo, $postId, countRoses($pdo, $postId));
 
     $roses = countRoses($pdo, $postId);
     $roses = json_encode($roses);

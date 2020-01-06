@@ -1,7 +1,7 @@
 
 // if (window.location.href.indexOf('post.php') > -1) {
 
-    const roseForms = document.querySelectorAll('.roses');
+const roseForms = document.querySelectorAll('.roses');
 
 
 roseForms.forEach(function(roseForm){
@@ -11,13 +11,11 @@ roseForms.forEach(function(roseForm){
     roseForm.addEventListener('submit', function(){
 
         event.preventDefault();
-        console.log(roseButton)
-
 
         var formData = new FormData(roseForm);
         if (roseButton[0].className !== 'hidden') {
 
-            fetch('app/posts/rose.php?rose=' + roseButton.value, {
+            fetch('app/posts/rose.php?rose=' + roseButton[0].value, {
                 method: 'POST',
                 body: formData
             }).then(function(response){
@@ -30,7 +28,7 @@ roseForms.forEach(function(roseForm){
 
         }else if (roseButton[1].className !== 'hidden') {
 
-            fetch('app/posts/removeRose.php?rose=' + roseButton.value, {
+            fetch('app/posts/removeRose.php?rose=' + roseButton[1].value, {
                 method: 'POST',
                 body: formData
             }).then(function(response){

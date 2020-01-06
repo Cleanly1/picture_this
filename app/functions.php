@@ -114,18 +114,10 @@ if (!function_exists('updateRose')) {
     * @param object $pdo          [database]
     * @param int    $postId       [The rosed post]
     * @param array  $postData     [The post data]
-    * @param int    $updateOption [The update option]
     */
-    function updateRose(object $pdo, int $postId, int $roses, int $updateOption):void {
+    function updateRose(object $pdo, int $postId, int $roses):void {
 
         $statement = $pdo->prepare('UPDATE posts SET roses = :roses WHERE id = :id');
-        if ($updateOption === 0) {
-            --$roses;
-        }
-        if ($updateOption === 1) {
-            ++$roses;
-        }
-
         $statement->execute([
             ':roses' => $roses,
             ':id' => $postId
@@ -153,12 +145,21 @@ if (!function_exists('showErrors')) {
      * Shows the errors for the user
      */
     function showErrors():void {
-        if (isset($_SESSION['errors'])){
             foreach ($_SESSION['errors'] as $error){
                 echo $error;
             };
             unset($_SESSION['errors']);
-        };
+    }
+}
+if (!function_exists('showSuccess')) {
+    /**
+     * Shows the errors for the user
+     */
+    function showSuccess():void {
+            foreach ($_SESSION['success'] as $success){
+                echo $success;
+            };
+            unset($_SESSION['success']);
     }
 }
 

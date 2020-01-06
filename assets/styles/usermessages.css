@@ -1,0 +1,19 @@
+
+.errorMessages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: indianred;
+    border: 2px solid red;
+}
+
+
+.successMessages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: lightgreen;
+    border: 2px solid springgreen;
+}

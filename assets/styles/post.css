@@ -1,0 +1,111 @@
+
+
+.posts {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 90vw;
+    margin: 5vw;
+    margin-bottom: 50px;
+}
+
+
+.previewPosts {
+    width: 40vw;
+    height: 40vw;
+    overflow: hidden;
+    margin: 10px 0;
+    box-shadow: 2px 2px 2px 2px black;
+
+}
+
+.previewPosts img {
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.post {
+    margin: 40px;
+    margin-bottom: 100px;
+}
+.post img {
+    width: 100%;
+}
+
+.feedPosts {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 90vw;
+    margin: 5%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.feedPosts img {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dropdownPostSettings {
+    position: absolute;
+    display: inline-block;
+    top: calc(40px - 18px);
+    right: 40px;
+    width: 120px;
+}
+
+.dropdownFeedSettings {
+    position: absolute;
+    display: inline-block;
+    right: 40px;
+    width: 120px;
+}
+
+.dropdownFeedSettings p {
+    float: right;
+    width: 70%;
+}
+
+.postSettings {
+    display: none;
+    position: relative;
+    float: left;
+    background: rgba(0, 0, 0, 0.7);
+    width: 120px;
+}
+
+.dropdownPostSettings p {
+    float: right;
+    width: 70%;
+}
+
+.postSettings form {
+    width: 100%;
+}
+
+.postSettings button {
+    background: none;
+    border: none;
+    width: 90%;
+    padding: 0;
+    color: white;
+}
+
+.dropdownPostSettings:hover .postSettings {
+    display: block;
+}
+
+.dropdownFeedSettings:hover .postSettings {
+    display: block;
+}
+
+.roses {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.postContent {
+    border-bottom: 1px solid lightgrey;
+}

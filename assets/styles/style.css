@@ -1,3 +1,7 @@
+@import url(post.css);
+@import url(userMessages.css);
+@import url(profile.css);
+
 * {
     margin: 0;
     padding: 0;
@@ -66,11 +70,6 @@ body {
 
 .active {
     background-color: black;
-}
-
-.hej {
-    padding: 5px;
-    padding-bottom: 0;
 }
 
 .navLinks {
@@ -152,156 +151,12 @@ textarea {
     margin: 20px 0;
 }
 
-.profileName{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row nowrap;
-    height: 50px;
-    background-color: var(--picture-this-blue);
-}
-
-.profileName a{
-    position: absolute;
-    right: 10px;
-}
-
-.profileBio {
-    height: 110px;
-    width: 250px;
-    font-size: 16px;
-    box-shadow: 0px 0px 6px black;
-    margin: 5px;
-    line-height: 19px;
-    padding: 5px;
-}
-
-.profileInfo {
-    display: flex;
-    margin-top: 10px;
-    justify-content: space-around;
-}
-
-.profileInfo img {
-    height: 100px;
-    width: 100px;
-    object-fit: cover;
-    object-position: 52%;
-    border-radius: 50%;
-    border: 2px solid lightgrey;
-    box-shadow: 0px 0px 6px black;
-    margin: 7px;
-    font-size: 16px;
-}
-
 .changeEmail {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: flex-start;
     margin: 20px 0;
-}
-
-.profile {
-    display: flex;
-    flex-flow: column nowrap;
-}
-
-.posts {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    width: 90vw;
-    margin: 5vw;
-    margin-bottom: 50px;
-}
-
-
-.previewPosts {
-    width: 40vw;
-    height: 40vw;
-    overflow: hidden;
-    margin: 10px 0;
-    box-shadow: 2px 2px 2px 2px black;
-
-}
-
-.previewPosts img {
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-}
-
-.post {
-    margin: 40px;
-    margin-bottom: 100px;
-}
-.post img {
-    width: 100%;
-}
-
-.feedPosts {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 90vw;
-    margin: 2.5vw;
-}
-
-.feedPosts img {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.dropdownPostSettings {
-    position: absolute;
-    display: inline-block;
-    top: calc(40px - 18px);
-    right: 40px;
-    width: 120px;
-}
-
-.dropdownFeedSettings {
-    position: absolute;
-    display: inline-block;
-}
-
-.postSettings {
-    display: none;
-    position: relative;
-    float: left;
-    background: rgba(0, 0, 0, 0.7);
-    width: 120px;
-}
-
-.dropdownPostSettings p {
-    float: right;
-    width: 70%;
-}
-
-.postSettings form {
-    width: 100%;
-}
-
-.postSettings button {
-    background: none;
-    border: none;
-    width: 90%;
-    padding: 0;
-    color: white;
-}
-
-.dropdownPostSettings:hover .postSettings {
-    display: block;
-}
-
-.dropdownFeedSettings:hover .postSettings {
-    display: block;
-}
-
-
-.roses {
-    display: flex;
-    flex-flow: row nowrap;
 }
 
 .st0{

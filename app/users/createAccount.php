@@ -52,6 +52,7 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
             ':avatar_image' => '/uploads/default-avatar.png'
 
         ]);
+        $_SESSION['success'][] = 'Your account was created successfully';
         if (isset($_SESSION['errors'])){
             unset($_SESSION['errors']);
         }

@@ -26,6 +26,7 @@ if (isset($_POST['bio'],$_SESSION['user'])) {
             ':id' => $_SESSION['user']['id']
         ]);
         $_SESSION['user']['biography'] = $updatedBio;
+        $_SESSION['success'][] = 'Your bio has been updated';
         // if (!$hej) {
         //     die(var_dump($pdo->errorInfo()));
         // }
@@ -58,6 +59,7 @@ if (isset($_FILES['avatar'],$_SESSION['user'])) {
         ':id' => $_SESSION['user']['id']
     ]);
     $_SESSION['user']['avatar_image'] = $avatarPath;
+    $_SESSION['success'][] = 'Your avatar has been changed';
     redirect('/profile.php');
   }
 }
@@ -83,6 +85,7 @@ if (isset($_POST['oldPassword'], $_POST['newPassword'],$_POST['repeatNewPassword
             ':newPassword' => password_hash($_POST['newPassword'], PASSWORD_BCRYPT),
             ':id' => $_SESSION['user']['id']
         ]);
+        $_SESSION['success'][] = 'Your password was successfully changed';
 
     }
 
@@ -113,7 +116,7 @@ if (isset($_POST['oldEmail'], $_POST['newEmail'], $_POST['password'], $_SESSION[
             ':newEmail' => $newEmail,
             ':id' => $_SESSION['user']['id']
         ]);
-
+        $_SESSION['success'][] = 'Your email has been updated';
     }
 
     redirect('/settings.php');

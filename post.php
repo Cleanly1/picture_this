@@ -28,32 +28,33 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     <?php }; ?>
-
-    <img src="<?php echo $post['post_image'] ?>" alt="">
-    <?php if (isset($_POST['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
-        <form class="createPost" action="/app/posts/edit.php" method="post" enctype="multipart/form-data">
-            <label for="description">Description</label>
-            <textarea name="description" rows="8" cols="80" wrap="hard"><?php echo $post['post_text'] ?></textarea>
-            <button type="submit" name="postId" value="<?php echo $postId ?>">Update</button>
-        </form>
-    <?php }else { ?>
-        <p><?php echo nl2br($post['post_text']) ?></p>
-    <?php } ?>
-
+    <div class="postContent">
+        <img src="<?php echo $post['post_image'] ?>" alt="">
         <form class="roses" method="post">
             <p><?php echo countRoses($pdo, $postId) ?></p>
             <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? '' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $postId ?>">Rose this post</button>
             <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? '' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $postId ?>">Remove rose</button>
         </form>
+        <?php if (isset($_POST['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
+            <form class="createPost" action="/app/posts/edit.php" method="post" enctype="multipart/form-data">
+                <label for="description">Description</label>
+                <textarea name="description" rows="8" cols="80" wrap="hard"><?php echo $post['post_text'] ?></textarea>
+                <button type="submit" name="postId" value="<?php echo $postId ?>">Update</button>
+            </form>
+        <?php }else { ?>
+            <p><?php echo nl2br($post['post_text']) ?></p>
+        <?php } ?>
+
     </div>
+</div>
 
 
 
 
 
 
-    <?php
+<?php
 
-    require __DIR__ . '/views/footer.php';
+require __DIR__ . '/views/footer.php';
 
-    ?>
+?>
