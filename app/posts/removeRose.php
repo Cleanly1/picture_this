@@ -9,8 +9,6 @@ if (isset($_GET['rose'])) {
 
     $postId = filter_var($_GET['rose'], FILTER_SANITIZE_NUMBER_INT);
 
-    $postData = getPostData($pdo, $postId);
-
     $statement = $pdo->prepare('DELETE FROM roses WHERE post_id = :post_id AND user_id = :user_id');
     $statement->execute([
         ':user_id' => $_SESSION['user']['id'],

@@ -24,6 +24,8 @@ if (isset($_POST['description'], $_POST['postId'])) {
             ':id' => $postId
         ]);
 
+        $_SESSION['success'][] = 'Post has been updated';
+
         redirect('../../post.php?id=' . $postId);
     }
     redirect('../../post.php?id=' . $postId);

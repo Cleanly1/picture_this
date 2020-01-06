@@ -1,0 +1,100 @@
+form input {
+    margin: 10px;
+    width: 35vw;
+    background-color: lightgrey;
+}
+
+form button {
+    padding: 5px;
+    margin: 10px;
+    max-width: 40vw;
+    background-color: lightgrey;
+    border: 2px solid darkgrey;
+}
+
+form label {
+    margin: 0 10px;
+}
+
+textarea {
+    height: 90px;
+    width: 250px;
+    resize: none;
+    overflow: visible;
+    line-height: 15px;
+    border: 2px solid darkgrey;
+}
+
+.loginForm {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+}
+
+.searchUsers {
+    display: flex;
+    align-items: center;
+}
+
+.searchUsers input {
+    height: 42px;
+    width: 100%;
+    margin: 0;
+    font-size: 22px;
+    border: 2px solid darkgrey;
+}
+
+.searchButton {
+    height: 46px;
+    margin: 0;
+    padding: 0;
+}
+
+.searchButton svg {
+    width: 36px;
+    height: 36px;
+}
+
+.makeAccount {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+}
+
+.chooseAvatar {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.changeBio {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
+}
+
+.changeBio textarea {
+    margin: 10px;
+}
+
+.changePassword {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
+}
+
+.changeEmail {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
+}
