@@ -6,7 +6,7 @@
     justify-content: space-between;
     width: 90vw;
     margin: 5vw;
-    margin-bottom: 50px;
+    margin-bottom: 72px;
 }
 
 
@@ -34,6 +34,10 @@
     margin-top: 20px;
 }
 
+.feed {
+    margin-bottom: 76px;
+}
+
 .feedPosts {
     display: flex;
     flex-flow: column nowrap;
@@ -43,11 +47,10 @@
     border-bottom: 1px solid lightgrey;
 }
 
-.feedPosts img {
+.feedPostsImage {
     width: 100%;
     margin-top: 20px;
 }
-
 .dropdownPostSettings {
     position: absolute;
     display: inline-block;
@@ -58,8 +61,9 @@
 .dropdownFeedSettings {
     position: absolute;
     display: inline-block;
-    right: 40px;
+    right: 20px;
     width: 120px;
+    z-index: 0;
 }
 
 .dropdownFeedSettings p {
@@ -108,4 +112,9 @@
 
 .postContent {
     border-bottom: 1px solid lightgrey;
+}
+
+.noPostsText {
+    text-align: center;
+    margin: 10px;
 }

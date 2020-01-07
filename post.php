@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
         <?php }else { ?>
             <p><?php echo nl2br($post['post_text']) ?></p>
         <?php } ?>
-
+        <p><?php echo timeAgo(time() - strtotime($post['published'])) ?></p>
     </div>
 </div>
 

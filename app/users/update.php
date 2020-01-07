@@ -58,9 +58,12 @@ if (isset($_FILES['avatar'],$_SESSION['user'])) {
         ':avatar_image' => $avatarPath,
         ':id' => $_SESSION['user']['id']
     ]);
+    if ($_SESSION['user']['avatar_image'] != '/uploads/default-avatar.png') {
+        unlink('../..' . $_SESSION['user']['avatar_image']);
+    }
     $_SESSION['user']['avatar_image'] = $avatarPath;
     $_SESSION['success'][] = 'Your avatar has been changed';
-    redirect('/profile.php');
+    redirect('/profile.php?username=' . $_SESSION['user']['username']);
   }
 }
 

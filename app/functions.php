@@ -84,7 +84,7 @@ if (!function_exists('getUserPosts')) {
     * @return array       [the users posts]
     */
     function getUserPosts(object $pdo, int $id):array {
-        $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :id');
+        $statement = $pdo->prepare('SELECT posts.id, posts.user_id, posts.post_image, posts.post_text, posts.published, users.id as user_id, users.username, users.avatar_image FROM posts LEFT JOIN users ON posts.user_id = users.id WHERE user_id = :id ORDER BY published DESC');
         $statement->execute([
             ':id' => $id
         ]);
@@ -93,7 +93,7 @@ if (!function_exists('getUserPosts')) {
 }
 
 
-if (!function_exists('getPost')) {
+if (!function_exists('getPostData')) {
     /**
     * Gets the selected post from the database
     * @param  object $pdo [Database]
@@ -105,7 +105,9 @@ if (!function_exists('getPost')) {
         $statement->execute([
             ':id' => $id
         ]);
+
         return $statement->fetch(PDO::FETCH_ASSOC);
+
     }
 }
 if (!function_exists('updateRose')) {
@@ -135,31 +137,30 @@ if (!function_exists('alreadyLiked')) {
             ':user_id' => $userId
         ]);
 
-        $roseData = $statement->fetch(PDO::FETCH_ASSOC);
-        return $roseData;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }
 
 if (!function_exists('showErrors')) {
     /**
-     * Shows the errors for the user
-     */
+    * Shows the errors for the user
+    */
     function showErrors():void {
-            foreach ($_SESSION['errors'] as $error){
-                echo $error;
-            };
-            unset($_SESSION['errors']);
+        foreach ($_SESSION['errors'] as $error){
+            echo $error;
+        };
+        unset($_SESSION['errors']);
     }
 }
 if (!function_exists('showSuccess')) {
     /**
-     * Shows the errors for the user
-     */
+    * Shows the errors for the user
+    */
     function showSuccess():void {
-            foreach ($_SESSION['success'] as $success){
-                echo $success;
-            };
-            unset($_SESSION['success']);
+        foreach ($_SESSION['success'] as $success){
+            echo $success;
+        };
+        unset($_SESSION['success']);
     }
 }
 
@@ -171,4 +172,30 @@ function countRoses(object $pdo, int $postId) {
     $roses = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return count($roses);
+}
+
+/**
+* Sorts the articles array by published date
+* @param  array $array [description]
+* @return array        [description]
+*/
+function sortsArrays(array $array): array {
+    usort($array, function($arrayItem1, $arrayItem2) {
+        return strtotime($arrayItem1['published']) <=> strtotime($arrayItem2['published']);
+    });
+
+    return array_reverse($array);
+}
+
+
+function timeAgo(int $timeAgo): string {
+    if ($timeAgo < (60*60)) {
+        return date('i', $timeAgo)." minutes ago";
+    } elseif ($timeAgo > 60*60 && $timeAgo < 60*60*24) {
+        return date('H', $timeAgo)." hours ago";
+    } elseif ($timeAgo > 60*60*24 && $timeAgo < 60*60*24*7) {
+        return date('j', $timeAgo)." days ago";
+    } else {
+        return date('j', $timeAgo)." days ago";
+    }
 }

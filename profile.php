@@ -49,7 +49,7 @@ isset($_SERVER['QUERY_STRING']) === true ? $queryString = explode("=" , $_SERVER
 </form>
 
 <div class="posts">
-    <?php $posts = array_reverse(getUserPosts($pdo, $userData['id'])); ?>
+    <?php $posts = getUserPosts($pdo, $userData['id']); ?>
     <?php if (empty($posts) && $queryString === $_SESSION['user']['username']){ ?>
 
             <h2>You have no posts, maybe consider adding some</h2>

@@ -43,3 +43,29 @@ roseForms.forEach(function(roseForm){
     })
 })
 // }
+
+
+const searchForm = document.querySelector('.searchUsers');
+console.log(searchForm);
+
+searchForm.addEventListener('submit', function(){
+
+    event.preventDefault();
+
+    const searchInput = searchForm.querySelector('input');
+
+    const userList = document.querySelector('ul');
+
+    var formData = new FormData(searchForm);
+    console.log(searchInput.value);
+
+    fetch('app/users/search.php?search=' + searchInput.value, {
+        method: 'POST',
+        body: formData
+    }).then(function(response){
+        return response.json();
+    }).then(function(users){
+        userList.innerHTML = `<li>${users}</li>`
+    })
+
+});
