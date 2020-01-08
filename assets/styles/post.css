@@ -29,7 +29,7 @@
     margin: 40px;
     margin-bottom: 100px;
 }
-.post img {
+.postImage {
     width: 100%;
     margin-top: 20px;
 }
@@ -117,4 +117,34 @@
 .noPostsText {
     text-align: center;
     margin: 10px;
+}
+
+.noPost {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.noPost p {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.noPost p a {
+    margin-left: 10px;
+}
+
+.rosePost {
+    width: 46px;
+    height: 46px;
+}
+
+.rosebutton {
+    display: flex;
+    background: none;
+    border: none;
+}
+
+.hidden {
+    display: none;
 }

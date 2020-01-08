@@ -29,11 +29,15 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
         <?php }; ?>
-        <img src="<?php echo $post['post_image'] ?>" alt="">
+        <img class="postImage" src="<?php echo $post['post_image'] ?>" alt="">
         <form class="roses" method="post">
             <p><?php echo countRoses($pdo, $postId) ?></p>
-            <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? '' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $postId ?>">Rose this post</button>
-            <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? '' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $postId ?>">Remove rose</button>
+            <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? 'rosebutton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $postId ?>">
+                <img class="rosePost" src="/assets/icons/rose.svg" alt="">
+            </button>
+            <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? 'rosebutton' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $postId ?>">
+                <img class="rosePost" src="/assets/icons/unrose.svg" alt="">
+            </button>
         </form>
         <?php if (isset($_POST['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
             <form class="createPost" action="/app/posts/edit.php" method="post" enctype="multipart/form-data">
@@ -44,7 +48,7 @@ if (isset($_GET['id'])) {
         <?php }else { ?>
             <p><?php echo nl2br($post['post_text']) ?></p>
         <?php } ?>
-        <p><?php echo timeAgo(time() - strtotime($post['published'])) ?></p>
+        <p><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
     </div>
 </div>
 

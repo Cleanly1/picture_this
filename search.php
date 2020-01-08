@@ -4,7 +4,7 @@ require __DIR__ . '/views/header.php';
 
 ?>
 
-<form class="searchUsers" method="post">
+<form class="searchUsers" method="get">
     <input type="text" name="" value="" placeholder="Search for a user...">
     <button class="searchButton" type="submit" name="button">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 460 460" xml:space="preserve">
@@ -14,7 +14,7 @@ require __DIR__ . '/views/header.php';
     </button>
 </form>
 
-<ul>
+<ul class="userList">
 
 </ul>
 

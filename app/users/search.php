@@ -9,18 +9,27 @@ if (isset($_GET['search'])) {
 
     $searchedUsername = filter_var($_GET['search'], FILTER_SANITIZE_STRING);
 
-    $statement = $pdo->prepare('SELECT * FROM users WHERE username = :searchedUsername%');
-    $users = $statement->execute([
-        ':searchedUsername' => $searchedUsername,
+    $statement = $pdo->prepare('SELECT id, username, email, avatar_image FROM users WHERE username LIKE :searchedUsername');
+    $statement->execute([
+        ':searchedUsername' => $searchedUsername . '%',
     ]);
 
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
+    if ($users === []) {
+        $users = json_encode([
+            [
+                'error' => 404,
+            ]
+        ]);
+        header('Content-Type: application/json');
+        echo $users;
+    }else {
+
+
+        $users = json_encode($users);
+        header('Content-Type: application/json');
+        echo $users;
     }
-
-    $users = json_encode($users);
-    header('Content-Type: application/json');
-    echo $users;
 
 }

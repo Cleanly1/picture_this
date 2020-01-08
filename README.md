@@ -24,3 +24,5 @@
 # Extra
 
 - As a user I should be able to follow and unfollow other users.
+
+- As a user I should be able to search for another user.

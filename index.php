@@ -55,10 +55,15 @@ if (isset($_SESSION['user'])) {
                     <img class="feedPostsImage" src="<?php echo $post['post_image'] ?>" alt="">
                     <form class="roses" method="post">
                         <p><?php echo countRoses($pdo, $post['id']) ?></p>
-                        <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? '' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $post['id'] ?>">Rose this post</button>
-                        <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? '' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $post['id'] ?>">Remove rose</button>
+                        <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? 'rosebutton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $post['id'] ?>">
+                            <img class="rosePost" src="/assets/icons/rose.svg" alt="">
+                        </button>
+                        <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? 'rosebutton' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $post['id'] ?>">
+                            <img class="rosePost" src="/assets/icons/unrose.svg" alt="">
+                        </button>
                     </form>
                     <p><?php echo nl2br($post['post_text']) ?></p>
+                    <p><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
                 </div>
 
             <?php }; ?>

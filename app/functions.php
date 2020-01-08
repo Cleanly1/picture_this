@@ -181,10 +181,10 @@ function countRoses(object $pdo, int $postId) {
 */
 function sortsArrays(array $array): array {
     usort($array, function($arrayItem1, $arrayItem2) {
-        return strtotime($arrayItem1['published']) <=> strtotime($arrayItem2['published']);
+        return (time() - strtotime($arrayItem1['published'])) <=> (time() - strtotime($arrayItem2['published']));
     });
 
-    return array_reverse($array);
+    return $array;
 }
 
 
