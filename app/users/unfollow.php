@@ -4,21 +4,28 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
+if (!userLoggedIn()) {
+    redirect('/');
+}
 
-if (isset($_POST['follow'])) {
 
-    $followedUser = filter_var($_POST['follow'], FILTER_SANITIZE_STRING);
+if (isset($_POST['unfollow'])) {
+
+    $followedUser = filter_var($_POST['unfollow'], FILTER_SANITIZE_STRING);
 
     $followedUser = getUserData($pdo, $followedUser);
 
     $check = checkIfFollowed($pdo, intval($followedUser['id']), intval($_SESSION['user']['id']));
 
-    if ($check !== false) {
-        $_SESSION['errors'][] = 'You already follows this user';
+    // die(var_dump($check));
+
+    if ($check === false) {
+        $_SESSION['errors'][] = 'Something went wrong...';
     }
 
+
     if (!isset($_SESSION['errors'])) {
-        $statement = $pdo->prepare('INSERT INTO follows (followed_user_id, follows_user_id) VALUES(:followed_user_id, :user_id)');
+        $statement = $pdo->prepare('DELETE FROM follows WHERE followed_user_id = :followed_user_id AND follows_user_id = :user_id');
         $statement->execute([
             ':followed_user_id' => $followedUser['id'],
             ':user_id' => $_SESSION['user']['id'],
@@ -28,13 +35,14 @@ if (isset($_POST['follow'])) {
         redirect('../../profile.php?username=' . $followedUser['username']);
     }
 
-    // if (!$check) {
+
+    // if (!isset($_SESSION['errors'])) {
     //     $followed = json_encode([
-    //             'response' => false
+    //             'response' => true
     //     ]);
     // }else {
     //     $followed = json_encode([
-    //             'response' => true
+    //             'response' => false
     //     ]);
     // }
     //

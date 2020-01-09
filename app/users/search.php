@@ -3,6 +3,7 @@
 require __DIR__.'/../autoload.php';
 
 if (!userLoggedIn()){
+    $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
 };
 if (isset($_GET['search'])) {
@@ -15,7 +16,7 @@ if (isset($_GET['search'])) {
     ]);
 
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+    // Could make proper code and results array that always is sent with the request
     if ($users === []) {
         $users = json_encode([
             [
@@ -25,7 +26,6 @@ if (isset($_GET['search'])) {
         header('Content-Type: application/json');
         echo $users;
     }else {
-
 
         $users = json_encode($users);
         header('Content-Type: application/json');

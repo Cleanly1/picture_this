@@ -38,15 +38,18 @@ isset($_SERVER['QUERY_STRING']) === true ? $queryString = explode("=" , $_SERVER
         <img src="<?php echo $userData['avatar_image'] ?>" alt="">
         <div class="profileBio">
             <?php if ($userData['biography'] === "" && $queryString === $_SESSION['user']['username']){  ?>
-                <p>You can change your bio in settings</p>
+                <p>You can change your bio in the settings</p>
             <?php }else { ?>
                 <p><?php echo nl2br($userData['biography']) ?></p>
             <?php } ?>
         </div>
     </div>
-    <form class="" action="/app/users/follow.php" method="post">
-        <button type="submit" value="<?php echo $userData['id'] ?>" name="button">Follow</button>
-    </form>
+    <?php if ($userData['username'] !== $_SESSION['user']['username']){ ?>
+        <form class="followForm" action="app/users/<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? "follow.php" : "unfollow.php" ?>" method="post">
+            <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? '' : 'hidden' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="follow">Follow</button>
+            <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'hidden' : '' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="unfollow">Unfollow</button>
+        </form>
+    <?php }; ?>
 
     <div class="posts">
         <?php $posts = getUserPosts($pdo, $userData['id']); ?>

@@ -199,3 +199,22 @@ function timeAgo(int $timeAgo): string {
         return date('j', $timeAgo)." days ago";
     }
 }
+
+if (!function_exists('checkIfFollowed')) {
+
+    function checkIfFollowed(object $pdo, int $followedUser, int $userId) {
+
+        $statement = $pdo->prepare('SELECT * FROM follows WHERE followed_user_id = :followedUser AND follows_user_id = :user_id');
+        $statement->execute([
+            ':followedUser' => $followedUser,
+            ':user_id' => $userId
+        ]);
+
+        if (!$statement) {
+            die(var_dump($pdo->errorInfo()));
+        }
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+
+    }
+}
