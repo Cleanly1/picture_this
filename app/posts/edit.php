@@ -8,25 +8,26 @@ if (!userLoggedIn()){
     redirect('/');
 };
 
-if (isset($_POST['description'], $_POST['postId'])) {
-    $description = $_POST['description'];
+if (isset($_POST['caption'], $_POST['postId'])) {
+    $caption = $_POST['caption'];
     $postId = $_POST['postId'];
 
-    if (strlen($description) > 255) {
+    preg_match_all("/(\n)/", $caption, $matches);
+    $totalLines = count($matches[0]) + 1;
 
-        $_SESSION['errors'][] = 'The description is to long';
-
+    // die(var_dump($totalLines));
+    if ($totalLines > 6 || strlen($caption)-$totalLines > 255) {
+        $_SESSION['errors'][] = 'Your text is tooooo long';
     }
-
     if (!isset($_SESSION['errors'])) {
         $statement = $pdo->prepare('UPDATE posts SET post_text = :post_text WHERE id = :id');
         $statement->execute([
-            ':post_text' => $description,
+            ':post_text' => $caption,
             ':id' => $postId
         ]);
 
         $_SESSION['success'][] = 'Post has been updated';
-
+        unset($_SESSION['edit']);
         redirect('../../post.php?id=' . $postId);
     }
     redirect('../../post.php?id=' . $postId);

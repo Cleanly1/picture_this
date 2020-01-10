@@ -5,6 +5,8 @@ require __DIR__ . '/views/header.php';
 if (isset($_GET['id'])) {
     $postId = filter_var($_GET['id'], FILTER_SANITIZE_STRING);
     $post = getPostData($pdo, $postId);
+}if (isset($_POST['edit'])) {
+    $_SESSION['edit'] = $_POST['edit'];
 }
 
 ?>
@@ -39,10 +41,10 @@ if (isset($_GET['id'])) {
                 <img class="rosePost" src="/assets/icons/unrose.svg" alt="">
             </button>
         </form>
-        <?php if (isset($_POST['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
-            <form class="createPost" action="/app/posts/edit.php" method="post" enctype="multipart/form-data">
-                <label for="description">Description</label>
-                <textarea name="description" rows="8" cols="80" wrap="hard"><?php echo $post['post_text'] ?></textarea>
+        <?php if (isset($_SESSION['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
+            <form class="editPost" action="/app/posts/edit.php" method="post" enctype="multipart/form-data">
+                <label for="caption">Description</label>
+                <textarea name="caption" rows="8" cols="80" wrap="hard"><?php echo $post['post_text'] ?></textarea>
                 <button type="submit" name="postId" value="<?php echo $postId ?>">Update</button>
             </form>
         <?php }else { ?>

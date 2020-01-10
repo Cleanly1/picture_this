@@ -1,5 +1,3 @@
-
-
 .posts {
     display: flex;
     flex-flow: row wrap;
@@ -8,7 +6,6 @@
     margin: 5vw;
     margin-bottom: 72px;
 }
-
 
 .previewPosts {
     width: 40vw;
@@ -47,10 +44,15 @@
     border-bottom: 1px solid lightgrey;
 }
 
+.caption {
+    font-size: 20px;
+}
+
 .feedPostsImage {
     width: 100%;
     margin-top: 20px;
 }
+
 .dropdownPostSettings {
     position: absolute;
     display: inline-block;
@@ -144,6 +146,22 @@
     background: none;
     border: none;
 }
+
+.createPost {
+    height: 80vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.editPost {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .hidden {
     display: none;

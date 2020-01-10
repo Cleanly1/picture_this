@@ -12,6 +12,7 @@ if (!userLoggedIn()){
     <?php showErrors(); ?>
 <?php }; ?>
 <form class="createPost" action="/app/posts/create.php" method="post" enctype="multipart/form-data">
+    <h1>Create a new post</h1>
     <label for="postImage">Choose an image to upload</label>
     <input type="file" accept="image/jpg, image/jpeg" name="postImage" id="postImage" required>
     <label for="description">Description</label>

@@ -10,6 +10,7 @@ form button {
     max-width: 40vw;
     background-color: lightgrey;
     border: 2px solid darkgrey;
+    font-size: 14px;
 }
 
 form label {
@@ -101,4 +102,8 @@ textarea {
 
 .roses p {
     font-size: 32px;
+}
+
+.postSettingsForm button {
+    font-size: 15px;
 }

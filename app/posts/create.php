@@ -24,10 +24,11 @@ if (isset($_FILES['postImage'])) {
 
     }
 
-    if (strlen($caption) > 255) {
+    preg_match_all("/(\n)(\r)/", $caption, $matches);
+    $totalLines = count($matches[0]) + 1;
 
-        $_SESSION['errors'][] = 'The description is to long';
-
+    if ($totalLines > 6 || strlen($caption)-$totalLines > 255) {
+        $_SESSION['errors'][] = 'Your text is tooooo long';
     }
 
     if (!isset($_SESSION['errors'])) {

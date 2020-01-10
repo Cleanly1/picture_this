@@ -43,10 +43,10 @@ if (isset($_SESSION['user'])) {
                         <div class="dropdownFeedSettings">
                             <p>Post settings</p>
                             <div class="postSettings">
-                                <form class="" action="post.php?id=<?php echo $post['id'] ?>" method="post">
+                                <form class="postSettingsForm" action="post.php?id=<?php echo $post['id'] ?>" method="post">
                                     <button type="submit" name="edit">Edit post</button>
                                 </form>
-                                <form class="" action="/app/posts/delete.php" method="post">
+                                <form class="postSettingsForm" action="/app/posts/delete.php" method="post">
                                     <button type="submit" name="delete" value="<?php echo $post['id'] ?>">Delete post</button>
                                 </form>
                             </div>
@@ -62,7 +62,7 @@ if (isset($_SESSION['user'])) {
                             <img class="rosePost" src="/assets/icons/unrose.svg" alt="">
                         </button>
                     </form>
-                    <p><?php echo nl2br($post['post_text']) ?></p>
+                    <p class="caption"><?php echo nl2br($post['post_text']) ?></p>
                     <p><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
                 </div>
 

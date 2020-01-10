@@ -97,3 +97,8 @@
     text-decoration: none;
     color: black;
 }
+
+.cog {
+    height: 46px;
+    width: 46px;
+}
