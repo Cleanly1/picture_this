@@ -36,7 +36,7 @@ if (isset($_SESSION['user'])) {
                 <div class="feedPosts">
                     <a class="profilePreviewFeed" href="/profile.php?username=<?php echo $post['username'] ?>">
                         <img class="profileImageFeed" src="<?php echo $post['avatar_image'] ?>" alt="">
-                        <p><?php echo $post['username'] ?></p>
+                        <p class="profileUsernameFeed"><?php echo $post['username'] ?></p>
                     </a>
                     <?php if ($_SESSION['user']['id'] === $post['user_id']){ ?>
 

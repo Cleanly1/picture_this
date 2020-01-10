@@ -4,6 +4,7 @@ require __DIR__.'/../autoload.php';
 
 
 if (!userLoggedIn()){
+    $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
 };
 

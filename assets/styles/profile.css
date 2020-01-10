@@ -61,6 +61,12 @@
     flex-flow: row nowrap;
     align-items: center;
     width: 50%;
+    text-decoration: none;
+}
+
+.profileUsernameFeed {
+    color: black;
+    font-size: 20px;
 }
 
 .profileImageSearch {

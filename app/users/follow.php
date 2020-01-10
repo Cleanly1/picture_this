@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
+if (!userLoggedIn()){
+    $_SESSION['errors'][] = 'Please log in and try again';
+    redirect('/');
+};
 
 if (isset($_POST['follow'])) {
 
