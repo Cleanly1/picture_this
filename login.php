@@ -3,9 +3,6 @@
 require __DIR__ . '/views/header.php';
 
  ?>
- <?php if (isset($_SESSION['errors'])){ ?>
-   <?php showErrors(); ?>
- <?php }; ?>
  <div class="loginPage">
  <form class="loginForm" action="app/users/login.php" method="post">
    <label for="email">Email</label>

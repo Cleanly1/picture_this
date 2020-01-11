@@ -71,8 +71,12 @@ if (isset($_SESSION['user'])) {
             <h1 class="noPostsText">Your posts and posts from those you follow will show up here</h1>
         <?php }; ?>
         </div>
-<?php }; ?>
+<?php }else {?>
+    <div class="welcomeScreen">
+        <h1 class="welcomeMessages">Welcome to Picture-This</h1>
 
+    </div>
+<?php } ?>
 <?php
 
 require __DIR__ . '/views/footer.php';

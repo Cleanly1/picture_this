@@ -10,10 +10,6 @@ if (!userLoggedIn()) {
 ?>
 <div class="settingsPage">
 
-    <?php if (isset($_SESSION['errors'])){ ?>
-        <?php showErrors(); ?>
-    <?php }; ?>
-
     <form class="changeBio" action="/app/users/update.php" method="post">
         <h1>Update Bio</h1>
         <label for="changeBio">Bio</label>

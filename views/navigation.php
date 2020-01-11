@@ -27,7 +27,6 @@ isset($_SERVER['QUERY_STRING']) === true ? $queryString = $_SERVER['QUERY_STRING
                                 </svg>
 
                             </a></li>
-                            <li class="navItem"><a href="/app/users/logout.php" class="navLinks">Logout</a></li>
                             <li class="navItem">
                                 <a href="/profile.php?username=<?php echo $_SESSION['user']['username'] ?>" class="navLinks">
                                     <svg class="profileLink" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="30 0 400 400" xml:space="preserve">
@@ -36,6 +35,7 @@ isset($_SERVER['QUERY_STRING']) === true ? $queryString = $_SERVER['QUERY_STRING
                                         </svg>
                                     </a>
                                 </li>
+                                <li class="navItem"><a href="/app/users/logout.php" class="navLinks">Logout</a></li>
                             <?php }else { ?>
                                 <li class="navItem"><a href="/login.php" class="navLinks">Login</a></li>
                             <?php } ?>

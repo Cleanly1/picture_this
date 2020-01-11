@@ -13,9 +13,6 @@ if (isset($_GET['id'])) {
 
 
 <div class="post">
-    <?php if (isset($_SESSION['errors'])){ ?>
-        <?php showErrors() ?>
-    <?php }; ?>
 
     <div class="postContent">
         <?php if ($_SESSION['user']['id'] === $post['user_id'] && !isset($_POST['edit'])){ ?>

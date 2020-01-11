@@ -17,3 +17,14 @@
     background-color: lightgreen;
     border: 2px solid springgreen;
 }
+
+.welcomeScreen {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.welcomeMessages {
+
+
+}

@@ -4,9 +4,6 @@ require __DIR__ . '/views/header.php';
 
  ?>
 
- <?php if (isset($_SESSION['errors'])){ ?>
-     <?php showErrors(); ?>
- <?php }; ?>
  <form class="makeAccount" action="/app/users/createAccount.php" method="post">
      <h1>Register an account</h1>
    <label for="email">Email</label>
