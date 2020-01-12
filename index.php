@@ -52,7 +52,9 @@ if (isset($_SESSION['user'])) {
                             </div>
                         </div>
                     <?php }; ?>
-                    <img class="feedPostsImage" src="<?php echo $post['post_image'] ?>" alt="">
+                    <div class="postsImage">
+                        <img class="" src="<?php echo $post['post_image'] ?>" alt="">
+                    </div>
                     <form class="roses" method="post">
                         <p><?php echo countRoses($pdo, $post['id']) ?></p>
                         <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? 'rosebutton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $post['id'] ?>">
@@ -74,7 +76,7 @@ if (isset($_SESSION['user'])) {
 <?php }else {?>
     <div class="welcomeScreen">
         <h1 class="welcomeMessages">Welcome to Picture-This</h1>
-
+        <img class="logo" src="/assets/icons/logo.svg" alt="">
     </div>
 <?php } ?>
 <?php

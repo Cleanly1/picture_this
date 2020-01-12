@@ -20,6 +20,10 @@ body {
     height: 100%;
 }
 
+.logo {
+    width: 60vw;
+}
+
 .loginPage {
     height: 50vh;
     display: flex;

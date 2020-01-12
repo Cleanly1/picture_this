@@ -25,14 +25,14 @@
 }
 
 .post {
-    margin: 40px;
+    margin: 20px;
     margin-bottom: 100px;
 }
-.postImage {
+/* .postImage {
     width: 100%;
     max-height: 370px;
     margin-top: 20px;
-}
+} */
 
 .feed {
     margin-bottom: 76px;
@@ -51,16 +51,27 @@
     font-size: 20px;
 }
 
-.feedPostsImage {
-    width: 100%;
-    max-height: 370px;
+.postsImage {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 370px;
+    max-height: 390px;
+    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+}
+
+.postsImage img {
+    /* width: 100%; */
     margin-top: 20px;
+    height: 370px;
 }
 
 .dropdownPostSettings {
     position: absolute;
     display: inline-block;
-    right: 40px;
+    right: 20px;
     width: 120px;
     top: calc(60px - 24px);
 }
@@ -119,6 +130,8 @@
 }
 
 .postContent {
+    display: flex;
+    flex-flow: column nowrap;
     border-bottom: 1px solid lightgrey;
 }
 
@@ -167,7 +180,6 @@
     justify-content: center;
     align-items: center;
 }
-
 
 .hidden {
     display: none;

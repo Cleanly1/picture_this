@@ -28,7 +28,9 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
         <?php }; ?>
-        <img class="postImage" src="<?php echo $post['post_image'] ?>" alt="">
+        <div class="postsImage">
+            <img class="postImage" src="<?php echo $post['post_image'] ?>" alt="">
+        </div>
         <form class="roses" method="post">
             <p><?php echo countRoses($pdo, $postId) ?></p>
             <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? 'rosebutton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $postId ?>">
