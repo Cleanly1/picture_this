@@ -47,9 +47,9 @@ if (isset($_GET['id'])) {
                 <button type="submit" name="postId" value="<?php echo $postId ?>">Update</button>
             </form>
         <?php }else { ?>
-            <p><?php echo nl2br($post['post_text']) ?></p>
+            <p class="caption"><?php echo nl2br($post['post_text']) ?></p>
         <?php } ?>
-        <p><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
+        <p class="timeAgo"><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
     </div>
 </div>
 

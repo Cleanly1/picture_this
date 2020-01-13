@@ -29,8 +29,10 @@
 
 .profileInfo {
     display: flex;
+    align-items: center;
     margin-top: 10px;
     justify-content: space-around;
+    padding: 0 2.5vw;
 }
 
 .profileInfo img {
@@ -96,6 +98,19 @@
     padding: 7px;
     text-decoration: none;
     color: black;
+}
+
+.isNotFollowed {
+    border-radius: 10px;
+    width: 30vw;
+    background-color: white;
+}
+
+.isFollowed {
+    border-radius: 10px;
+    width: 30vw;
+    background-color: lightgreen;
+    border-color: green;
 }
 
 .cog {

@@ -19,7 +19,6 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
 
 ?>
 <div class="profile">
-
     <div class="profileName">
         <h1><?php echo $userData['username'] ?></h1>
         <?php if ($_SESSION['user']['username'] === $username){ ?>
@@ -47,11 +46,11 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
     <!-- Follow button -->
     <?php if ($userData['username'] !== $_SESSION['user']['username']){ ?>
         <form class="followForm" action="app/users/<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? "follow.php" : "unfollow.php" ?>" method="post">
-            <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? '' : 'hidden' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="follow">Follow</button>
-            <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'hidden' : '' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="unfollow">Unfollow</button>
+            <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'isNotFollowed' : 'hidden' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="follow">Follow</button>
+            <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'hidden' : 'isFollowed' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="unfollow">Unfollow</button>
         </form>
     <?php }; ?>
-<!-- The selected users posts -->
+    <!-- The selected users posts -->
     <div class="posts">
         <?php $posts = getUserPosts($pdo, $userData['id']); ?>
         <?php if (empty($posts) && $username === $_SESSION['user']['username']){ ?>

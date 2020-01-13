@@ -28,11 +28,9 @@ if (isset($_SESSION['user'])) {
 
     ?>
 
-        <div class="feed">
-            <?php if (!empty($posts)){ ?>
+    <div class="feed">
+        <?php if (!empty($posts)){ ?>
             <?php foreach ($posts as $post){ ?>
-
-
                 <div class="feedPosts">
                     <a class="profilePreviewFeed" href="/profile.php?username=<?php echo $post['username'] ?>">
                         <img class="profileImageFeed" src="<?php echo $post['avatar_image'] ?>" alt="">
@@ -65,19 +63,23 @@ if (isset($_SESSION['user'])) {
                         </button>
                     </form>
                     <p class="caption"><?php echo nl2br($post['post_text']) ?></p>
-                    <p><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
+                    <p class="timeAgo"><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
                 </div>
 
             <?php }; ?>
         <?php }else { ?>
+
             <h1 class="noPostsText">Your posts and posts from those you follow will show up here</h1>
+
         <?php }; ?>
-        </div>
+    </div>
 <?php }else {?>
+
     <div class="welcomeScreen">
         <h1 class="welcomeMessages">Welcome to Picture-This</h1>
         <img class="logo" src="/assets/icons/logo.svg" alt="">
     </div>
+
 <?php } ?>
 <?php
 

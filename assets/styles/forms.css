@@ -1,7 +1,8 @@
 form input {
     margin: 10px;
-    width: 35vw;
+    width: 40vw;
     background-color: lightgrey;
+    font-size: 16px;
 }
 
 form button {
@@ -10,18 +11,20 @@ form button {
     max-width: 40vw;
     background-color: lightgrey;
     border: 2px solid darkgrey;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 form label {
+    font-size: 18px;
     margin: 0 10px;
 }
 
 textarea {
-    height: 90px;
-    width: 250px;
+    height: 100px;
+    width: 300px;
     resize: none;
     overflow: visible;
+    font-size: 14px;
     line-height: 15px;
     border: 2px solid darkgrey;
 }
@@ -31,7 +34,11 @@ textarea {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    width: 25vw;
+    width: 35vw;
+}
+
+.loginForm input {
+    width: 45vw;
 }
 
 .searchUsers {
@@ -106,4 +113,12 @@ textarea {
 
 .postSettingsForm button {
     font-size: 15px;
+}
+
+.followForm {
+    margin: 5px 2.5vw;
+}
+
+.followForm button {
+    margin: 0;
 }
