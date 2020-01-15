@@ -1,4 +1,7 @@
 # Picture This
+## About this project
+We were tasked to mimic Instagram. We had some minimum requirements that are listed below. We were free to
+add extra if we had time and the energy to do so.
 
 # Built with
 * PHP
@@ -9,7 +12,7 @@
 # How to install
 1. Clone the repository
 ```
-$ git clone https://github.com/Cleanly1/Plain-News.git
+$ git clone https://github.com/Cleanly1/picture-this.git
 ```
 2. Navigate to the folder where you cloned the repository via the terminal
 3. Start a local server

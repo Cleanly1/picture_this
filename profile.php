@@ -44,12 +44,19 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
         </div>
     </div>
     <!-- Follow button -->
-    <?php if ($userData['username'] !== $_SESSION['user']['username']){ ?>
-        <form class="followForm" action="app/users/<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? "follow.php" : "unfollow.php" ?>" method="post">
-            <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'isNotFollowed' : 'hidden' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="follow">Follow</button>
-            <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'hidden' : 'isFollowed' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="unfollow">Unfollow</button>
-        </form>
-    <?php }; ?>
+    <div class="followFunction">
+        <?php if ($userData['username'] !== $_SESSION['user']['username']){ ?>
+            <form class="followForm" action="app/users/<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? "follow.php" : "unfollow.php" ?>" method="post">
+                <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'isNotFollowed' : 'hidden' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="follow">Follow</button>
+                <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'hidden' : 'isFollowed' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="unfollow">Unfollow</button>
+            </form>
+        <?php }; ?>
+        <a class="<?php echo $userData['username'] === $_SESSION['user']['username'] ? 'followers usersFollowers' : 'followers' ?>" href="/followers.php?id=<?php echo $userData['id'] ?>">
+            <h4>Followers<br><?php echo countFollowers($pdo, $userData['id']) ?></h4>
+        </a>
+        <a class="followers usersFollowers" href="/follows.php?id=<?php echo $userData['id'] ?>">
+            <h4>Follows<br><?php echo countFollowing($pdo, $userData['id']) ?></h4></a>
+    </div>
     <!-- The selected users posts -->
     <div class="posts">
         <?php $posts = getUserPosts($pdo, $userData['id']); ?>

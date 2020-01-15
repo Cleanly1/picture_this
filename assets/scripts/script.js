@@ -97,7 +97,7 @@ if (window.location.href.indexOf('search.php') > -1) {
 
     });
 }
-
+// unused code for test to have follow without page refresh
 // const followForm = document.querySelector('.followForm');
 //
 // followForm.addEventListener('submit', function(){

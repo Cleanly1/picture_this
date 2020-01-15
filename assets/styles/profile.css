@@ -113,6 +113,31 @@
     border-color: green;
 }
 
+.followFunction {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-left: 15px;
+}
+
+.followers {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    height: 46px;
+    width: 70px;
+    padding: 2px;
+    text-decoration: none;
+    color: black;
+    margin-left: 15px;
+}
+.followers h4 {
+    text-align: center;
+}
+
+.usersFollowers {
+    margin-left: 0;
+}
+
 .cog {
     height: 46px;
     width: 46px;

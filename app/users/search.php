@@ -16,7 +16,7 @@ if (isset($_GET['search'])) {
     ]);
 
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-    // Could make proper code and results array that always is sent with the request
+    // Could make proper error and results array that "always" is sent with the request
     if ($users === []) {
         $users = json_encode([
             [

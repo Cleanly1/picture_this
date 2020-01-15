@@ -129,15 +129,26 @@ if (!function_exists('updateRose')) {
 }
 
 if (!function_exists('alreadyLiked')) {
-
-    function alreadyLiked(object $pdo, int $userId, int $postId) {
+    /**
+    * Checks if a post id already liked
+    * @param  object $pdo    [description]
+    * @param  int    $userId [description]
+    * @param  int    $postId [description]
+    * @return [mixed]         [returns false or an array]
+    */
+    function alreadyLiked(object $pdo, int $userId, int $postId):bool {
         $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id AND user_id = :user_id');
         $statement->execute([
             ':post_id' => $postId,
             ':user_id' => $userId
         ]);
+        $check = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$check) {
+            return false;
+        } else {
+            return true;
+        }
 
-        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }
 
@@ -152,6 +163,7 @@ if (!function_exists('showErrors')) {
         unset($_SESSION['errors']);
     }
 }
+
 if (!function_exists('showSuccess')) {
     /**
     * Shows the errors for the user
@@ -164,14 +176,17 @@ if (!function_exists('showSuccess')) {
     }
 }
 
-function countRoses(object $pdo, int $postId) {
-    $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id');
-    $statement->execute([
-        ':post_id' => $postId,
-    ]);
-    $roses = $statement->fetchAll(PDO::FETCH_ASSOC);
+if (!function_exists('countRoses')) {
 
-    return count($roses);
+    function countRoses(object $pdo, int $postId) {
+        $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id');
+        $statement->execute([
+            ':post_id' => $postId,
+        ]);
+        $roses = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return count($roses);
+    }
 }
 
 /**
@@ -179,7 +194,7 @@ function countRoses(object $pdo, int $postId) {
 * @param  array $array [description]
 * @return array        [description]
 */
-function sortsArrays(array $array): array {
+function sortsArrays(array $array):array {
     usort($array, function($arrayItem1, $arrayItem2) {
         return (time() - strtotime($arrayItem1['published'])) <=> (time() - strtotime($arrayItem2['published']));
     });
@@ -188,7 +203,7 @@ function sortsArrays(array $array): array {
 }
 
 
-function timeAgo(int $timeAgo): string {
+function timeAgo(int $timeAgo):string {
     if ($timeAgo < (60*60)) {
         return date('i', $timeAgo)." minutes ago";
     } elseif ($timeAgo > 60*60 && $timeAgo < 60*60*24) {
@@ -216,5 +231,55 @@ if (!function_exists('checkIfFollowed')) {
 
         return $statement->fetch(PDO::FETCH_ASSOC);
 
+    }
+}
+
+
+if (!function_exists('getFollowers')) {
+    function getFollowers(object $pdo, int $userId):array {
+
+        $statement = $pdo->prepare('SELECT * FROM follows LEFT JOIN users ON follows.follows_user_id = users.id WHERE followed_user_id = :user_id');
+        $statement->execute([
+            ':user_id' => $userId
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+if (!function_exists('getFollowing')) {
+    function getFollowing(object $pdo, int $userId):array {
+
+        $statement = $pdo->prepare('SELECT * FROM follows LEFT JOIN users ON follows.followed_user_id = users.id WHERE follows_user_id = :user_id');
+        $statement->execute([
+            ':user_id' => $userId
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+if (!function_exists('countFollowers')) {
+
+    function countFollowers(object $pdo, int $userId) {
+        $statement = $pdo->prepare('SELECT * FROM follows WHERE followed_user_id = :user_id');
+        $statement->execute([
+            ':user_id' => $userId,
+        ]);
+        $followers = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return count($followers);
+    }
+}
+if (!function_exists('countFollowing')) {
+
+    function countFollowing(object $pdo, int $userId) {
+        $statement = $pdo->prepare('SELECT * FROM follows WHERE follows_user_id = :user_id');
+        $statement->execute([
+            ':user_id' => $userId,
+        ]);
+        $followers = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return count($followers);
     }
 }
