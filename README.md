@@ -15,10 +15,11 @@ add extra if we had time and the energy to do so.
 $ git clone https://github.com/Cleanly1/picture-this.git
 ```
 2. Navigate to the folder where you cloned the repository via the terminal
-3. Start a local server
+3. Start a local server with php:
 ```
 php -S localhost:8000
 ```
+without php MAMP?
 4. Open up your favorite browser and enter localhost:8000 in the url
 5. Enjoy!
 
@@ -50,8 +51,15 @@ php -S localhost:8000
 
 - As a user I should be able to search for another user.
 
+- As a user I should be able to view followers and people the user follows.
+
 
 
 # Maker
 
 [Cleanly1](https://github.com/Cleanly1)
+
+# License
+This project is licensed under the MIT License - see the LICENSE file for details
+
+YRGO 2019

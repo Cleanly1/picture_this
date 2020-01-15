@@ -22,8 +22,6 @@ if (isset($_SESSION['user'])) {
         $posts[] = $userPost;
     }
     $posts = sortsArrays($posts);
-    // print_r($posts);
-    // die(var_dump(strtotime($posts[1]['published'])));
 
 
     ?>
@@ -63,6 +61,17 @@ if (isset($_SESSION['user'])) {
                         </button>
                     </form>
                     <p class="caption"><?php echo nl2br($post['post_text']) ?></p>
+                    <?php $comments = getPostComments($pdo, $post['id']); ?>
+                    <div class="comments">
+                        <?php foreach ($comments as $comment){ ?>
+                            <a class="profileCommentLink" href="/profile.php?username=<?php echo $comment['username'] ?>">
+                                <img class="profileImageFeed" src="<?php echo $comment['avatar_image'] ?>" alt="">
+                                <p><?php echo $comment['username'] ?></p>
+                            </a>
+                            <p class="commentText"><?php echo nl2br($comment['comment']) ?></p>
+                        <?php }; ?>
+                    </div>
+                    <a class="feedAddComment" href="/post.php?id=<?php echo $post['id'] ?>">Add a comment...</a>
                     <p class="timeAgo"><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
                 </div>
 

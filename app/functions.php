@@ -193,8 +193,13 @@ if (!function_exists('showSuccess')) {
 }
 
 if (!function_exists('countRoses')) {
-
-    function countRoses(object $pdo, int $postId) {
+    /**
+    * Counts number of roses on a post
+    * @param object   $pdo
+    * @param int      $postId
+    * @return int
+    */
+    function countRoses(object $pdo, int $postId):int {
         $statement = $pdo->prepare('SELECT * FROM roses WHERE post_id = :post_id');
         $statement->execute([
             ':post_id' => $postId,
@@ -205,34 +210,47 @@ if (!function_exists('countRoses')) {
     }
 }
 
-/**
-* Sorts the articles array by published date
-* @param  array $array [description]
-* @return array        [description]
-*/
-function sortsArrays(array $array):array {
-    usort($array, function($arrayItem1, $arrayItem2) {
-        return (time() - strtotime($arrayItem1['published'])) <=> (time() - strtotime($arrayItem2['published']));
-    });
+if (!function_exists('sortsArrays')) {
+    /**
+    * Sorts the articles array by published date
+    * @param  array $array [description]
+    * @return array        [description]
+    */
+    function sortsArrays(array $array):array {
+        usort($array, function($arrayItem1, $arrayItem2) {
+            return (time() - strtotime($arrayItem1['published'])) <=> (time() - strtotime($arrayItem2['published']));
+        });
 
-    return $array;
+        return $array;
+    }
 }
-
-
-function timeAgo(int $timeAgo):string {
-    if ($timeAgo < (60*60)) {
-        return date('i', $timeAgo)." minutes ago";
-    } elseif ($timeAgo > 60*60 && $timeAgo < 60*60*24) {
-        return date('H', $timeAgo)." hours ago";
-    } elseif ($timeAgo > 60*60*24 && $timeAgo < 60*60*24*7) {
-        return date('j', $timeAgo)." days ago";
-    } else {
-        return date('j', $timeAgo)." days ago";
+if (!function_exists('timeAgo')) {
+    /**
+    * Gets the time from when the its published to now
+    * @param int    $timeAgo
+    * @return string
+    */
+    function timeAgo(int $timeAgo):string {
+        if ($timeAgo < (60*60)) {
+            return date('i', $timeAgo)." minutes ago";
+        } elseif ($timeAgo > 60*60 && $timeAgo < 60*60*24) {
+            return date('H', $timeAgo)." hours ago";
+        } elseif ($timeAgo > 60*60*24 && $timeAgo < 60*60*24*7) {
+            return date('j', $timeAgo)." days ago";
+        } else {
+            return date('j', $timeAgo)." days ago";
+        }
     }
 }
 
 if (!function_exists('checkIfFollowed')) {
-
+    /**
+    * Checks if a user already follows another user
+    * @param  object $pdo    [description]
+    * @param  int    $followedUser [description]
+    * @param  int    $userId
+    * @return mixed           [Returns an array or false]
+    */
     function checkIfFollowed(object $pdo, int $followedUser, int $userId) {
 
         $statement = $pdo->prepare('SELECT * FROM follows WHERE followed_user_id = :followedUser AND follows_user_id = :user_id');
@@ -252,6 +270,12 @@ if (!function_exists('checkIfFollowed')) {
 
 
 if (!function_exists('getFollowers')) {
+    /**
+    * Gets all the users that follows a user
+    * @param  object $pdo    [description]
+    * @param  int    $userId [description]
+    * @return array            [description]
+    */
     function getFollowers(object $pdo, int $userId):array {
 
         $statement = $pdo->prepare('SELECT * FROM follows LEFT JOIN users ON follows.follows_user_id = users.id WHERE followed_user_id = :user_id');
@@ -264,6 +288,12 @@ if (!function_exists('getFollowers')) {
 }
 
 if (!function_exists('getFollowing')) {
+    /**
+    * Gets all the users a person is following
+    * @param  object $pdo    [description]
+    * @param  int    $userId [description]
+    * @return array            [description]
+    */
     function getFollowing(object $pdo, int $userId):array {
 
         $statement = $pdo->prepare('SELECT * FROM follows LEFT JOIN users ON follows.followed_user_id = users.id WHERE follows_user_id = :user_id');
@@ -273,11 +303,17 @@ if (!function_exists('getFollowing')) {
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
 }
 
 if (!function_exists('countFollowers')) {
-
-    function countFollowers(object $pdo, int $userId) {
+    /**
+    * Counts all the users that is following a user
+    * @param  object $pdo    [description]
+    * @param  int    $userId [description]
+    * @return int            [description]
+    */
+    function countFollowers(object $pdo, int $userId):int {
         $statement = $pdo->prepare('SELECT * FROM follows WHERE followed_user_id = :user_id');
         $statement->execute([
             ':user_id' => $userId,
@@ -288,8 +324,13 @@ if (!function_exists('countFollowers')) {
     }
 }
 if (!function_exists('countFollowing')) {
-
-    function countFollowing(object $pdo, int $userId) {
+    /**
+    * Counts all the users that a user follows
+    * @param  object $pdo    [description]
+    * @param  int    $userId [description]
+    * @return int            [description]
+    */
+    function countFollowing(object $pdo, int $userId):int {
         $statement = $pdo->prepare('SELECT * FROM follows WHERE follows_user_id = :user_id');
         $statement->execute([
             ':user_id' => $userId,
@@ -297,5 +338,23 @@ if (!function_exists('countFollowing')) {
         $followers = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return count($followers);
+    }
+}
+
+if (!function_exists('getPostComments')) {
+    /**
+    * Gets all the comments from a post
+    * @param  object $pdo    [description]
+    * @param  int    $postId [description]
+    * @return array         [description]
+    */
+    function getPostComments(object $pdo, int $postId):array {
+        $statement = $pdo->prepare('SELECT * FROM comments LEFT JOIN users ON users.id = comments.user_id WHERE post_id = :post_id');
+        $statement->execute([
+            ':post_id' => $postId,
+        ]);
+
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -25,7 +25,7 @@ textarea {
     resize: none;
     overflow: visible;
     font-size: 14px;
-    line-height: 15px;
+    line-height: 16px;
     border: 2px solid darkgrey;
 }
 
@@ -124,4 +124,25 @@ textarea {
 
 .followForm button {
     margin: 0;
+}
+
+.commentForm {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentForm textarea{
+    height: 24px;
+    max-height: 300px;
+    resize: vertical;
+}
+
+.commentForm button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    height: 28px;
 }

@@ -7,17 +7,25 @@ if (!userLoggedIn()){
     redirect('/');
 };
 
-if (isset($_POST['comment'], $_GET['id'])) {
+if (isset($_POST['comment'], $_POST['id'])) {
     $comment = trim(filter_var($_POST['comment'], FILTER_SANITIZE_STRING));
-    $postId = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    $postId = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+    $publishedDate = date('Y/m/d H:i:s');
 
-    $statement = $pdo->prepare('INSERT INTO comments (post_id, user_id, comment) VALUES(:post_id, :user_id, :comment)');
-    $statement->execute([
-        ':post_id' => $postId,
-        ':user_id' => $_SESSION['user']['id'],
-        ':comment' => $comment
-    ]);
+    if (strlen($comment) > 255) {
+        $_SESSION['errors'][] = 'Your comment is tooooo long';
+    }
+    if (!isset($_SESSION['errors'])) {
 
-
+        $statement = $pdo->prepare('INSERT INTO comments (post_id, user_id, comment, published) VALUES(:post_id, :user_id, :comment, :published)');
+        $statement->execute([
+            ':post_id' => $postId,
+            ':user_id' => $_SESSION['user']['id'],
+            ':comment' => $comment,
+            ':published' => $publishedDate
+        ]);
+    }
     redirect('../../post.php?id=' . $postId);
+
+
 }

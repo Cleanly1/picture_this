@@ -50,7 +50,7 @@
 .caption {
     width: 300px;
     max-height: 100px;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 16px;
     margin-bottom: 8px;
 }
@@ -183,6 +183,22 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+}
+
+.comments {
+    border-top: 2px solid black;
+    padding-top: 10px;
+}
+
+.commentText {
+    border-bottom: 2px solid lightgrey;
+    margin-bottom: 8px;
+    padding: 0px 5px 5px 10px;
+}
+
+.feedAddComment {
+    text-decoration: none;
+    color: black;
 }
 
 .timeAgo {

@@ -139,6 +139,20 @@
     float: right;
 }
 
+.profileCommentLink {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding-bottom: 5px;
+}
+
+.profileCommentLink img {
+    height: 38px;
+    width: 38px;
+}
+
 .cog {
     height: 46px;
     width: 46px;
