@@ -53,10 +53,10 @@ if (isset($_SESSION['user'])) {
                     </div>
                     <form class="roses" method="post">
                         <p><?php echo countRoses($pdo, $post['id']) ?></p>
-                        <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? 'rosebutton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $post['id'] ?>">
+                        <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? 'roseButton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $post['id'] ?>">
                             <img class="rosePost" src="/assets/icons/rose.svg" alt="">
                         </button>
-                        <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? 'rosebutton' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $post['id'] ?>">
+                        <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $post['id']) ? 'roseButton' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $post['id'] ?>">
                             <img class="rosePost" src="/assets/icons/unrose.svg" alt="">
                         </button>
                     </form>

@@ -6,7 +6,7 @@
     <?php foreach ($users as $user){ ?>
         <li class="searchedProfiles">
             <a href="/profile.php?username=<?php echo $user['username'] ?>">
-                <img class="profileImageSearch" src="<?php echo $user['avatar_image'] ?>">
+                <img class="profileImageSearch" src="<?php echo $user['avatar_image'] ?>" alt="<?php echo $user['username'] ?> profile picture">
                 <p><?php echo $user['username'] ?></p>
             </a>
         </li>

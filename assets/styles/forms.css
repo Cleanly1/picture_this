@@ -107,8 +107,29 @@ textarea {
     margin: 20px 0;
 }
 
+.roses {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    height: 54px;
+}
+
+.roseButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    outline: none;
+    margin: 0 5px;
+    padding: 0;
+    height: 42px;
+}
+
 .roses p {
-    font-size: 32px;
+    font-size: 26px;
+    width: 20px;
+    text-align: right;
 }
 
 .postSettingsForm button {

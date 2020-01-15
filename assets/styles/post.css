@@ -50,7 +50,7 @@
 .caption {
     width: 300px;
     max-height: 100px;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 16px;
     margin-bottom: 8px;
 }
@@ -127,12 +127,6 @@
     display: block;
 }
 
-.roses {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-}
-
 .postContent {
     display: flex;
     flex-flow: column nowrap;
@@ -160,14 +154,8 @@
 }
 
 .rosePost {
-    width: 46px;
-    height: 46px;
-}
-
-.rosebutton {
-    display: flex;
-    background: none;
-    border: none;
+    width: 36px;
+    height: 36px;
 }
 
 .createPost {

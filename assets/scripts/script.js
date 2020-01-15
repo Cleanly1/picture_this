@@ -23,9 +23,9 @@ roseForms.forEach(function(roseForm){
             }).then(function(roses){
                 roseForm.querySelector('p').textContent = roses;
                 roseButton[0].classList.add('hidden');
-                roseButton[0].classList.remove('rosebutton');
+                roseButton[0].classList.remove('roseButton');
                 roseButton[1].classList.remove('hidden');
-                roseButton[1].classList.add('rosebutton');
+                roseButton[1].classList.add('roseButton');
             })
 
         }else if (roseButton[1].className !== 'hidden') {
@@ -38,9 +38,9 @@ roseForms.forEach(function(roseForm){
             }).then(function(roses){
                 roseForm.querySelector('p').textContent = roses;
                 roseButton[1].classList.add('hidden');
-                roseButton[1].classList.remove('rosebutton');
+                roseButton[1].classList.remove('roseButton');
                 roseButton[0].classList.remove('hidden');
-                roseButton[0].classList.add('rosebutton');
+                roseButton[0].classList.add('roseButton');
             })
         }
 

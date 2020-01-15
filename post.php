@@ -35,15 +35,15 @@ $comments = getPostComments($pdo, $postId);
             </div>
         <?php }; ?>
         <div class="postsImage">
-            <img class="postImage" src="<?php echo $post['post_image'] ?>" alt="">
+            <img class="postImage" src="<?php echo $post['post_image'] ?>" alt="<?php echo $post['username'] ?> post image">
         </div>
         <form class="roses" method="post">
             <p><?php echo countRoses($pdo, $postId) ?></p>
-            <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? 'rosebutton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $postId ?>">
-                <img class="rosePost" src="/assets/icons/rose.svg" alt="">
+            <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? 'roseButton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $postId ?>">
+                <img class="rosePost" src="/assets/icons/rose.svg" alt="Like image">
             </button>
-            <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? 'rosebutton' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $postId ?>">
-                <img class="rosePost" src="/assets/icons/unrose.svg" alt="">
+            <button class="<?php echo alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? 'roseButton' : 'hidden' ?>" type="submit" name="unrose" value="<?php echo $postId ?>">
+                <img class="rosePost" src="/assets/icons/unrose.svg" alt="Like image">
             </button>
         </form>
         <?php if (isset($_SESSION['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
@@ -59,17 +59,17 @@ $comments = getPostComments($pdo, $postId);
         <div class="comments">
             <?php foreach ($comments as $comment){ ?>
                 <a class="profileCommentLink" href="/profile.php?username=<?php echo $comment['username'] ?>">
-                    <img class="profileImageFeed" src="<?php echo $comment['avatar_image'] ?>" alt="">
+                    <img class="profileImageFeed" src="<?php echo $comment['avatar_image'] ?>" alt="<?php echo $comment['username'] ?> profile picture">
                     <p><?php echo $comment['username'] ?></p>
                 </a>
                 <p class="commentText"><?php echo nl2br($comment['comment']) ?>
                     <?php if ($comment['user_id'] === $_SESSION['user']['id']){ ?>
-                    <form class="deleteComment" action="/app/posts/deleteComment.php" method="post">
-                        <input type="hidden" name="id" value="<?php echo $comment['id'] ?>">
-                        <button type="submit">Delete comment</button>
-                    </form>
-                <?php }; ?>
-            </p>
+                        <form class="deleteComment" action="/app/posts/deleteComment.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo $comment['id'] ?>">
+                            <button type="submit">Delete comment</button>
+                        </form>
+                    <?php }; ?>
+                </p>
 
             <?php }; ?>
         </div>

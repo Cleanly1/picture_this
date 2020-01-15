@@ -34,7 +34,7 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
     </div>
     <!-- Profile info with avatar image and biography -->
     <div class="profileInfo">
-        <img src="<?php echo $userData['avatar_image'] ?>" alt="">
+        <img src="<?php echo $userData['avatar_image'] ?>" alt="Profile picture">
         <div class="profileBio">
             <?php if ($userData['biography'] === "" && $username === $_SESSION['user']['username']){  ?>
                 <p>You can change your bio in the settings</p>
