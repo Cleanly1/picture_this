@@ -5,6 +5,10 @@ require __DIR__ . '/views/header.php';
 if (isset($_GET['id'])) {
     $postId = filter_var($_GET['id'], FILTER_SANITIZE_STRING);
     $post = getPostData($pdo, $postId);
+    if ($post === []) {
+        $_SESSION['error'][] = 'Something unexpected happend';
+        redirect('/');
+    }
 }if (isset($_POST['edit'])) {
     $_SESSION['edit'] = filter_var($_POST['edit'], FILTER_SANITIZE_STRING);
 }
@@ -58,7 +62,15 @@ $comments = getPostComments($pdo, $postId);
                     <img class="profileImageFeed" src="<?php echo $comment['avatar_image'] ?>" alt="">
                     <p><?php echo $comment['username'] ?></p>
                 </a>
-                <p class="commentText"><?php echo nl2br($comment['comment']) ?></p>
+                <p class="commentText"><?php echo nl2br($comment['comment']) ?>
+                    <?php if ($comment['user_id'] === $_SESSION['user']['id']){ ?>
+                    <form class="deleteComment" action="/app/posts/deleteComment.php" method="post">
+                        <input type="hidden" name="id" value="<?php echo $comment['id'] ?>">
+                        <button type="submit">Delete comment</button>
+                    </form>
+                <?php }; ?>
+            </p>
+
             <?php }; ?>
         </div>
         <form class="commentForm" action="/app/posts/comment.php" method="post">

@@ -68,7 +68,7 @@ if (isset($_SESSION['user'])) {
                                 <img class="profileImageFeed" src="<?php echo $comment['avatar_image'] ?>" alt="">
                                 <p><?php echo $comment['username'] ?></p>
                             </a>
-                            <p class="commentText"><?php echo nl2br($comment['comment']) ?></p>
+                            <p class="commentText commentTextFeed"><?php echo nl2br($comment['comment']) ?></p>
                         <?php }; ?>
                     </div>
                     <a class="feedAddComment" href="/post.php?id=<?php echo $post['id'] ?>">Add a comment...</a>

@@ -122,7 +122,13 @@ if (!function_exists('getPostData')) {
             ':id' => $id
         ]);
 
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        $statement = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if (!$statement) {
+            return [];
+        }
+
+        return $statement;
 
     }
 }
@@ -349,7 +355,7 @@ if (!function_exists('getPostComments')) {
     * @return array         [description]
     */
     function getPostComments(object $pdo, int $postId):array {
-        $statement = $pdo->prepare('SELECT * FROM comments LEFT JOIN users ON users.id = comments.user_id WHERE post_id = :post_id');
+        $statement = $pdo->prepare('SELECT users.id as user_id, comments.comment, users.username, users.avatar_image, comments.post_id, comments.id FROM comments LEFT JOIN users ON users.id = comments.user_id WHERE post_id = :post_id');
         $statement->execute([
             ':post_id' => $postId,
         ]);

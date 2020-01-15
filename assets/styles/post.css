@@ -188,17 +188,30 @@
 .comments {
     border-top: 2px solid black;
     padding-top: 10px;
+    margin-top: 7px;
 }
 
 .commentText {
     border-bottom: 2px solid lightgrey;
-    margin-bottom: 8px;
+    margin-bottom: 3px;
     padding: 0px 5px 5px 10px;
+}
+
+.commentTextFeed {
+    margin-bottom: 8px;
 }
 
 .feedAddComment {
     text-decoration: none;
     color: black;
+}
+
+.deleteComment button{
+    margin: 0;
+    border: none;
+    padding: 0;
+    background: none;
+    margin-bottom: 8px;
 }
 
 .timeAgo {
