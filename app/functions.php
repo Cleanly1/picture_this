@@ -180,7 +180,7 @@ if (!function_exists('showErrors')) {
     */
     function showErrors():void {
         foreach ($_SESSION['errors'] as $error){
-            echo $error;
+            echo $error . "<br>";
         };
         unset($_SESSION['errors']);
     }
@@ -192,7 +192,7 @@ if (!function_exists('showSuccess')) {
     */
     function showSuccess():void {
         foreach ($_SESSION['success'] as $success){
-            echo $success;
+            echo $success . "<br>";
         };
         unset($_SESSION['success']);
     }

@@ -11,7 +11,7 @@ if (isset($_POST['delete'])) {
     $postId = filter_var($_POST['delete'], FILTER_SANITIZE_NUMBER_INT);
     $post = getPostData($pdo, $postId);
 
-    if ($post["user_id"] !== $_SESSION['user']['id']) {
+    if ($post['user_id'] !== $_SESSION['user']['id']) {
         $_SESSION['errors'][] = 'You can\'t delete other users posts';
     }
 
