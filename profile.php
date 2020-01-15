@@ -54,8 +54,8 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
         <a class="<?php echo $userData['username'] === $_SESSION['user']['username'] ? 'followers usersFollowers' : 'followers' ?>" href="/followers.php?id=<?php echo $userData['id'] ?>">
             <h4>Followers<br><?php echo countFollowers($pdo, $userData['id']) ?></h4>
         </a>
-        <a class="followers usersFollowers" href="/follows.php?id=<?php echo $userData['id'] ?>">
-            <h4>Follows<br><?php echo countFollowing($pdo, $userData['id']) ?></h4></a>
+        <a class="followers usersFollowers" href="/following.php?id=<?php echo $userData['id'] ?>">
+            <h4>Following<br><?php echo countFollowing($pdo, $userData['id']) ?></h4></a>
     </div>
     <!-- The selected users posts -->
     <div class="posts">

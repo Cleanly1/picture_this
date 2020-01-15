@@ -136,6 +136,7 @@
 
 .usersFollowers {
     margin-left: 0;
+    float: right;
 }
 
 .cog {

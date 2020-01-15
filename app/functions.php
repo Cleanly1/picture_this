@@ -71,8 +71,24 @@ if (!function_exists('getUserData')) {
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+}
 
+if (!function_exists('getUsername')) {
+    /**
+    * Gets the specified users username based on userId
+    * @param  object $pdo [database]
+    * @param  int $userId [user id]
+    * @return array       [user data]
+    */
+    function getUsername(object $pdo, int $userId):string {
+        $statement = $pdo->prepare('SELECT username FROM users WHERE id = :userId');
+        $statement->execute([
+            ':userId' => $userId
+        ]);
 
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        return $user['username'];
+    }
 
 }
 

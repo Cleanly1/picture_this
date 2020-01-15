@@ -2,7 +2,7 @@
 
 require __DIR__ . '/followHeader.php';
 
-$users = getFollowers($pdo, $userId);
+$users = getFollowing($pdo, $userId);
 
 require __DIR__ . '/followList.php';
 

@@ -56,5 +56,9 @@
     width: 46px;
     padding: 3px;
     padding-bottom: 1px;
+}
 
+.backButton {
+    text-decoration: none;
+    color: black;
 }
