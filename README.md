@@ -15,13 +15,14 @@ add extra if we had time and the energy to do so.
 $ git clone https://github.com/Cleanly1/picture-this.git
 ```
 2. Navigate to the folder where you cloned the repository via the terminal
-3. Start a local server with php:
+3. Add an uploads folder in the root of the repository
+4. Start a local server with php:
 ```
 php -S localhost:8000
 ```
 without php MAMP?
-4. Open up your favorite browser and enter localhost:8000 in the url
-5. Enjoy!
+5. Open up your favorite browser and enter localhost:8000 in the url
+6. Enjoy!
 
 # Required
 - As a user I should be able to create an account.
