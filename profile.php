@@ -63,7 +63,7 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
         <?php if (empty($posts) && $username === $_SESSION['user']['username']){ ?>
             <div class="noPost">
                 <h2>You have no posts, maybe consider adding some</h2>
-                <p>Great idea? Just press here<a href="/createPost.php" class="navLinks">New Post</a></p>
+                <p>Great idea? Just press here<a href="/createPost.php">New Post</a></p>
 
             </div>
 

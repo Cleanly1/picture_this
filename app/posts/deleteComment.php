@@ -20,7 +20,6 @@ if (isset($_POST['id'])) {
 
     if (!$comment) {
         $_SESSION['errors'][] = 'Something unexpected happend';
-        redirect('/');
     }
 
     if ($comment['user_id'] != $_SESSION['user']['id']) {
@@ -34,7 +33,8 @@ if (isset($_POST['id'])) {
             ':id' => $commentId,
             ':user_id' => $_SESSION['user']['id']
         ]);
-
+        $_SESSION['success'][] = 'Your comment has been deleted';
         redirect('../../post.php?id=' . $comment['post_id'] );
     }
+    redirect('/');
 }

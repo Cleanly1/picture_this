@@ -38,15 +38,18 @@ if (isset($_FILES['postImage'])) {
 
         move_uploaded_file($postImage['tmp_name'], '../..' . $imagePath);
         $statement = $pdo->prepare('INSERT INTO posts (user_id, post_image, post_text, roses, published) VALUES(:user_id, :post_image, :post_text, 0, :published)');
+
         if (!$statement) {
             die(var_dump($pdo->errorInfo()));
         }
+
         $statement->execute([
             ':user_id' => $_SESSION['user']['id'],
             ':post_image' => $imagePath,
             ':post_text' => $caption,
             ':published' => $publishedDate
         ]);
+        $_SESSION['success'][] = 'Post has been created';
         redirect('/');
     }
     redirect('/createPost.php');

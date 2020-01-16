@@ -91,7 +91,6 @@ if (window.location.href.indexOf('search.php') > -1) {
                         userList.innerHTML += listItem;
                     }
                 })
-                console.log(users)
             })
         }
 

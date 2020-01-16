@@ -29,6 +29,7 @@ if (isset($_POST['delete'])) {
         $statement->execute([
             ':post_id' => $postId,
         ]);
+        $_SESSION['success'][] = 'Post has been deleted';
         redirect('../../profile.php?username=' . $_SESSION['user']['username']);
     }
     redirect('../../post.php?id=' . $postId);
