@@ -139,3 +139,12 @@ if (window.location.href.indexOf('search.php') > -1) {
 //     }
 //
 // })
+// start on displaying image preview
+// const createPostForm = document.querySelector('.createPost');
+//
+//
+// createPostForm.addEventListener('change', function(){
+//     console.log(event)
+//
+//     createPostForm.querySelector('img').src = event.target.value;
+// })
