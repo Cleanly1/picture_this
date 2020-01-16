@@ -75,7 +75,7 @@ By: Camilla Kylmänen Sjörén
 
 # Testers
 * Viktor Sjöblom
-* Noname
+* Camilla Kylmänen Sjörén
 
 # Maker
 
