@@ -54,6 +54,10 @@ without php MAMP?
 
 - As a user I should be able to view followers and people the user follows.
 
+- As a user I should be able to comment on a post.
+
+- As a user I should be able to delete a comment from a post.
+
 # Code reviw
 
 By: Camilla Kylmänen Sjörén
@@ -68,6 +72,10 @@ By: Camilla Kylmänen Sjörén
 - Consider adding alt-texts to your images (web accessibility)
 - delete.php:14 - I cannot find a way to delete another user's post (which makes sense :) ), is this if-statement necessary?
 - I think it's a nice and cool page. Nice work!! :)
+
+# Testers
+* Viktor Sjöblom
+* Noname
 
 # Maker
 
