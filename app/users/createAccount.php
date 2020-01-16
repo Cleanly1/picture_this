@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
-    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+    $email = strtolower(trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)));
     $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
