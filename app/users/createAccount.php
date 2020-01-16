@@ -5,18 +5,18 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
-    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-    $username = trim($_POST['username']);
+    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+    $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
     $results = alreadyExistInDatabase($email, $username, $pdo);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['errors'] = ['The email address is not a valid email address!'];
+        $_SESSION['errors'][] = 'The email address is not a valid email address!';
     }
 
     if (strlen($username) < 5) {
-        $_SESSION['errors'] = ['You have to enter a username that is atleast five characters long'];
+        $_SESSION['errors'][] = 'You have to enter a username that is atleast five characters long';
     }
 
     if (strlen($_POST['password']) < 5) {
