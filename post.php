@@ -39,6 +39,7 @@ $comments = getPostComments($pdo, $postId);
         </div>
         <form class="roses" method="post">
             <p><?php echo countRoses($pdo, $postId) ?></p>
+            <input type="hidden" name="rose" value="<?php echo $postId ?>">
             <button class="<?php echo !alreadyLiked($pdo, $_SESSION['user']['id'], $postId) ? 'roseButton' : 'hidden' ?>" type="submit" name="rose" value="<?php echo $postId ?>">
                 <img class="rosePost" src="/assets/icons/rose.svg" alt="Like image">
             </button>

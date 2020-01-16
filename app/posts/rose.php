@@ -6,9 +6,9 @@ if (!userLoggedIn()){
     $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
 };
-if (isset($_GET['rose'])) {
+if (isset($_POST['rose'])) {
 
-    $postId = filter_var($_GET['rose'], FILTER_SANITIZE_NUMBER_INT);
+    $postId = filter_var($_POST['rose'], FILTER_SANITIZE_NUMBER_INT);
 
     $statement = $pdo->prepare('INSERT INTO roses (user_id, post_id) VALUES(:user_id, :post_id)');
     $statement->execute([

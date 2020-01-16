@@ -15,7 +15,7 @@ roseForms.forEach(function(roseForm){
         var formData = new FormData(roseForm);
         if (roseButton[0].className !== 'hidden') {
 
-            fetch('app/posts/rose.php?rose=' + roseButton[0].value, {
+            fetch('app/posts/rose.php', {
                 method: 'POST',
                 body: formData
             }).then(function(response){
@@ -30,7 +30,7 @@ roseForms.forEach(function(roseForm){
 
         }else if (roseButton[1].className !== 'hidden') {
 
-            fetch('app/posts/removeRose.php?rose=' + roseButton[1].value, {
+            fetch('app/posts/removeRose.php', {
                 method: 'POST',
                 body: formData
             }).then(function(response){
