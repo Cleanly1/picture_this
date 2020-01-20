@@ -160,7 +160,7 @@ textarea {
     align-items: center;
 }
 
-.commentForm textarea{
+.commentForm textarea {
     height: 24px;
     max-height: 300px;
     resize: vertical;
@@ -172,4 +172,23 @@ textarea {
     align-items: center;
     padding: 0 5px;
     height: 28px;
+}
+
+/* SEARCHED POSTS */
+
+.postItems {
+    display: flex;
+    flex-direction: column;
+    margin: 2vh 2vw;
+    border-bottom: 2px solid orange;
+}
+
+.postImages {
+    width: 20vw;
+    height: auto;
+}
+
+.userLink {
+    text-decoration: none;
+    color: black;
 }
