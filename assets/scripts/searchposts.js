@@ -34,7 +34,6 @@ input.addEventListener("input", (e) => {
     })
     .then(posts => {
         resultContainer.innerHTML = "";
-        console.log(e.target.value.length);
 
         if (input.value.length < 2) {
             resultContainer.innerHTML = "";
