@@ -6,7 +6,8 @@ const resultContainer = document.querySelector(".postItems");
 const searchBtn = document.querySelector(".searchButton2");
 const input = document.querySelector(".searchPost");
 const form = document.querySelector(".postForm");
-resultContainer.innerHTML = "";
+input.value = "";
+
 
 const createPostTemplate = (postId, postImage, username) => {
     return `<a href="/post.php?id=${postId}">
@@ -19,10 +20,12 @@ const createPostTemplate = (postId, postImage, username) => {
 </p>`
 }
 
+
 input.addEventListener("input", (e) => {
 
     e.preventDefault();
 
+    resultContainer.innerHTML = "";
     const formData = new FormData(form);
 
     fetch("app/users/searchtest.php", {
@@ -33,20 +36,25 @@ input.addEventListener("input", (e) => {
         return response.json();
     })
     .then(posts => {
-        resultContainer.innerHTML = "";
 
         if (input.value.length < 2) {
             resultContainer.innerHTML = "";
         }
 
         posts.forEach(post => {
-            const postTemplate = createPostTemplate(post.id, post.post_image, post.username);
-            const li = document.createElement("li");
-            li.innerHTML = postTemplate;
-            resultContainer.appendChild(li);
+
+            if (e.target.value.length < 2) {
+                resultContainer.innerHTML = "";
+            }
+
+            if (e.target.value.length > 2) {
+
+                const postTemplate = createPostTemplate(post.id, post.post_image, post.username);
+                const li = document.createElement("li");
+                li.innerHTML = postTemplate;
+                resultContainer.appendChild(li);
+            }
         })
-
     })
-
 })
 
