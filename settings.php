@@ -48,6 +48,11 @@ if (!userLoggedIn()) {
         <button type="submit" name="button">Change Password</button>
     </form>
 
+    <form action="/app/users/delete.php" method="post">
+        <h1>Delete account</h1>
+        <button class="logout delete-account" type="submit">Yes</button>
+    </form>
+
 </div>
 
 <?php

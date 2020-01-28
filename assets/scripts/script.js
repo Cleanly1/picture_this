@@ -50,7 +50,7 @@ roseForms.forEach(function(roseForm){
 
 if (window.location.href.indexOf('search.php') > -1) {
     const searchForm = document.querySelector('.searchUsers');
-    console.log(searchForm);
+    // console.log(searchForm);
 
     searchForm.addEventListener('submit', function(){
 

@@ -1,2 +1,5 @@
 .DS_Store
-/uploads
+/uploads/*
+!/uploads/.gitkeep
+/app/database*
+!/app/database/.gitkeep

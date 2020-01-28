@@ -1,8 +1,8 @@
 <?php
 
-require __DIR__.'/../autoload.php';
+require __DIR__ . '/../autoload.php';
 
-if (!userLoggedIn()){
+if (!userLoggedIn()) {
     $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
 };
@@ -25,11 +25,10 @@ if (isset($_GET['search'])) {
         ]);
         header('Content-Type: application/json');
         echo $users;
-    }else {
+    } else {
 
         $users = json_encode($users);
         header('Content-Type: application/json');
         echo $users;
     }
-
 }
