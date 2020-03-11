@@ -10,5 +10,5 @@
                 <p><?php echo $user['username'] ?></p>
             </a>
         </li>
-    <?php }; ?>
+    <?php } ?>
 </ul>

@@ -41,7 +41,7 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
         }
         if ($result['email'] === $email && $result['username'] === $username) {
             $_SESSION['errors'] = ['It seems that this username is already in use.',
-            'It seems that the email is already registered.'];
+                'It seems that the email is already registered.', ];
         }
     }
     if (isset($_SESSION['errors'])) {
@@ -49,10 +49,10 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
     } else {
         $statement = $pdo->prepare('INSERT INTO users (username, email, password, avatar_image) VALUES(:username, :email, :password, :avatar_image)');
         $statement->execute([
-            ':username' => $username,
-            ':email' => $email,
-            ':password' => $password,
-            ':avatar_image' => '/uploads/default-avatar.png'
+            ':username'     => $username,
+            ':email'        => $email,
+            ':password'     => $password,
+            ':avatar_image' => '/uploads/default-avatar.png',
 
         ]);
         $_SESSION['success'][] = 'Your account was created successfully';
@@ -61,13 +61,5 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
         }
     }
 }
-
-
-
-
-
-
-
-
 
 redirect('/login.php');
