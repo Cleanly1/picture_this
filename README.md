@@ -1,5 +1,5 @@
 # Picture This
-
+[![StyleCI](https://github.styleci.io/repos/226862850/shield?branch=master)](https://github.styleci.io/repos/226862850)
 ## About this project
 
 We were tasked to mimic Instagram. We had some minimum requirements that are listed below. We were free to
