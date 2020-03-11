@@ -1,0 +1,10 @@
+{
+    "name": "oskar/picture-this",
+    "authors": [
+        {
+            "name": "Cleanly",
+            "email": "oskar.turesson99@gmail.com"
+        }
+    ],
+    "require": {}
+}
