@@ -25,12 +25,12 @@ if (isset($_POST['delete'])) {
     }
 
     if (!isset($_SESSION['errors'])) {
-        unlink('../..' . $post['post_image']);
+        unlink('../..'.$post['post_image']);
 
         $statement = $pdo->prepare('DELETE FROM posts WHERE id = :id AND user_id = :user_id');
         $statement->execute([
-            ':id' => $postId,
-            ':user_id' => $_SESSION['user']['id']
+            ':id'      => $postId,
+            ':user_id' => $_SESSION['user']['id'],
         ]);
 
         $statement = $pdo->prepare('DELETE FROM roses WHERE post_id = :post_id');
@@ -38,7 +38,7 @@ if (isset($_POST['delete'])) {
             ':post_id' => $postId,
         ]);
         $_SESSION['success'][] = 'Post has been deleted';
-        redirect('../../profile.php?username=' . $_SESSION['user']['username']);
+        redirect('../../profile.php?username='.$_SESSION['user']['username']);
     }
-    redirect('../../post.php?id=' . $postId);
+    redirect('../../post.php?id='.$postId);
 }

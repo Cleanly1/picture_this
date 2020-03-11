@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-require __DIR__ . '/../autoload.php';
+require __DIR__.'/../autoload.php';
 
 if (!userLoggedIn()) {
     $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
-};
+}
 if (isset($_GET['search'])) {
     $searchedUsername = filter_var($_GET['search'], FILTER_SANITIZE_STRING);
 
     $statement = $pdo->prepare('SELECT id, username, email, avatar_image FROM users WHERE username LIKE :searchedUsername');
     $statement->execute([
-        ':searchedUsername' => $searchedUsername . '%',
+        ':searchedUsername' => $searchedUsername.'%',
     ]);
 
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ if (isset($_GET['search'])) {
         $users = json_encode([
             [
                 'error' => 404,
-            ]
+            ],
         ]);
         header('Content-Type: application/json');
         echo $users;
