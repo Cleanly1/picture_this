@@ -8,5 +8,7 @@
     ],
     "description": "Hi",
     "license": "MIT",
-    "require": {}
+    "require": {
+        "friendsofphp/php-cs-fixer": "^2.16"
+    }
 }
