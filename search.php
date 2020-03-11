@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/views/header.php';
+require __DIR__.'/views/header.php';
 
 if (!userLoggedIn()) {
     redirect('/');
@@ -38,4 +38,4 @@ if (!userLoggedIn()) {
 
 <script src="/assets/scripts/searchposts.js"></script>
 
-<?php require __DIR__ . '/views/footer.php'; ?>
+<?php require __DIR__.'/views/footer.php'; ?>

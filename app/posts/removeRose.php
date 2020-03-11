@@ -14,7 +14,7 @@ require __DIR__.'/../autoload.php';
 if (!userLoggedIn()) {
     $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
-};
+}
 if (isset($_POST['rose'])) {
     $postId = filter_var($_POST['rose'], FILTER_SANITIZE_NUMBER_INT);
 

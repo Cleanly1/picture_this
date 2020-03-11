@@ -18,7 +18,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     $password = $_POST['password'];
     $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     $statement->execute([
-        ':email' => $email
+        ':email' => $email,
     ]);
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     if (!$user) {
@@ -27,11 +27,11 @@ if (isset($_POST['email'], $_POST['password'])) {
     }
     if (password_verify($password, $user['password']) !== false) {
         $_SESSION['user'] = [
-            'id' => $user['id'],
-            'username' => $user['username'],
-            'email' => $user['email'],
-            'biography' => $user['biography'],
-            'avatar_image' => $user['avatar_image']
+            'id'           => $user['id'],
+            'username'     => $user['username'],
+            'email'        => $user['email'],
+            'biography'    => $user['biography'],
+            'avatar_image' => $user['avatar_image'],
         ];
         unset($_SESSION['errors']);
     } else {

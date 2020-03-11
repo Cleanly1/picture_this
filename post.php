@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/views/header.php';
+require __DIR__.'/views/header.php';
 
 if (isset($_GET['id'])) {
     $postId = filter_var($_GET['id'], FILTER_SANITIZE_STRING);
@@ -33,7 +33,7 @@ $comments = getPostComments($pdo, $postId);
                     </form>
                 </div>
             </div>
-        <?php }; ?>
+        <?php } ?>
         <div class="postsImage">
             <img class="postImage" src="<?php echo $post['post_image'] ?>" alt="<?php echo $post['username'] ?> post image">
         </div>
@@ -69,17 +69,17 @@ $comments = getPostComments($pdo, $postId);
                             <input type="hidden" name="id" value="<?php echo $comment['id'] ?>">
                             <button type="submit">Delete comment</button>
                         </form>
-                    <?php }; ?>
+                    <?php } ?>
                 </p>
 
-            <?php }; ?>
+            <?php } ?>
         </div>
         <form class="commentForm" action="/app/posts/comment.php" method="post">
             <input type="hidden" name="id" value="<?php echo $postId ?>">
             <textarea name="comment" rows="8" cols="80"></textarea>
             <button type="submit" name="button">Comment</button>
         </form>
-        <p class="timeAgo"><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
+        <p class="timeAgo"><?php echo timeAgo(time() - strtotime($post['published'])) == '00 minutes ago' ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
     </div>
 </div>
 
@@ -90,6 +90,6 @@ $comments = getPostComments($pdo, $postId);
 
 <?php
 
-require __DIR__ . '/views/footer.php';
+require __DIR__.'/views/footer.php';
 
 ?>
