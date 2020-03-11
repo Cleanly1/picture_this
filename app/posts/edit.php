@@ -11,11 +11,10 @@
 
 require __DIR__.'/../autoload.php';
 
-
 if (!userLoggedIn()) {
     $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
-};
+}
 
 if (isset($_POST['caption'], $_POST['postId'])) {
     $caption = $_POST['caption'];
@@ -25,19 +24,19 @@ if (isset($_POST['caption'], $_POST['postId'])) {
     $totalLines = count($matches[0]) + 1;
 
     // die(var_dump($totalLines));
-    if ($totalLines > 6 || strlen($caption)-$totalLines > 255) {
+    if ($totalLines > 6 || strlen($caption) - $totalLines > 255) {
         $_SESSION['errors'][] = 'Your text is tooooo long';
     }
     if (!isset($_SESSION['errors'])) {
         $statement = $pdo->prepare('UPDATE posts SET post_text = :post_text WHERE id = :id');
         $statement->execute([
             ':post_text' => $caption,
-            ':id' => $postId
+            ':id'        => $postId,
         ]);
 
         $_SESSION['success'][] = 'Post has been updated';
         unset($_SESSION['edit']);
-        redirect('../../post.php?id=' . $postId);
+        redirect('../../post.php?id='.$postId);
     }
-    redirect('../../post.php?id=' . $postId);
+    redirect('../../post.php?id='.$postId);
 }

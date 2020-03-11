@@ -1,13 +1,13 @@
 <?php
 
-require __DIR__ . '/views/header.php';
+require __DIR__.'/views/header.php';
 
 if (isset($_SESSION['user'])) {
     $posts = [];
 
     $statement = $pdo->prepare('SELECT users.id, users.username, users.avatar_image FROM users LEFT JOIN follows ON users.id = follows.followed_user_id WHERE follows.follows_user_id = :id');
     $statement->execute([
-        ':id' => $_SESSION['user']['id']
+        ':id' => $_SESSION['user']['id'],
     ]);
     $follows = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -44,7 +44,7 @@ if (isset($_SESSION['user'])) {
                                 </form>
                             </div>
                         </div>
-                    <?php }; ?>
+                    <?php } ?>
                     <div class="postsImage">
                         <img class="" src="<?php echo $post['post_image'] ?>" alt="">
                     </div>
@@ -67,18 +67,18 @@ if (isset($_SESSION['user'])) {
                                 <p><?php echo $comment['username'] ?></p>
                             </a>
                             <p class="commentText commentTextFeed"><?php echo nl2br($comment['comment']) ?></p>
-                        <?php }; ?>
+                        <?php } ?>
                     </div>
                     <a class="feedAddComment" href="/post.php?id=<?php echo $post['id'] ?>">Add a comment...</a>
-                    <p class="timeAgo"><?php echo timeAgo(time() - strtotime($post['published'])) == "00 minutes ago" ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
+                    <p class="timeAgo"><?php echo timeAgo(time() - strtotime($post['published'])) == '00 minutes ago' ? 'Just posted' : timeAgo(time() - strtotime($post['published'])) ?></p>
                 </div>
 
-            <?php }; ?>
+            <?php } ?>
         <?php } else { ?>
 
             <h1 class="noPostsText">Your posts and posts from those you follow will show up here</h1>
 
-        <?php }; ?>
+        <?php } ?>
     </div>
 <?php
 } else {?>
@@ -91,6 +91,6 @@ if (isset($_SESSION['user'])) {
 <?php } ?>
 <?php
 
-require __DIR__ . '/views/footer.php';
+require __DIR__.'/views/footer.php';
 
 ?>
