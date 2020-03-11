@@ -6,5 +6,6 @@
             "email": "oskar.turesson99@gmail.com"
         }
     ],
+    "license": "MIT",
     "require": {}
 }
