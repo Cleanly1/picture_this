@@ -2,7 +2,7 @@
 
 require __DIR__ . '/views/header.php';
 
-if (!userLoggedIn()){
+if (!userLoggedIn()) {
     redirect('/');
 };
 

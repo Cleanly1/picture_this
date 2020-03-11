@@ -21,20 +21,17 @@ if (isset($_SESSION['user'])) {
     foreach ($userPosts as $userPost) {
         $posts[] = $userPost;
     }
-    $posts = sortsArrays($posts);
-
-
-    ?>
+    $posts = sortsArrays($posts); ?>
 
     <div class="feed">
-        <?php if (!empty($posts)){ ?>
-            <?php foreach ($posts as $post){ ?>
+        <?php if (!empty($posts)) { ?>
+            <?php foreach ($posts as $post) { ?>
                 <div class="feedPosts">
                     <a class="profilePreviewFeed" href="/profile.php?username=<?php echo $post['username'] ?>">
                         <img class="profileImageFeed" src="<?php echo $post['avatar_image'] ?>" alt="">
                         <p class="profileUsernameFeed"><?php echo $post['username'] ?></p>
                     </a>
-                    <?php if ($_SESSION['user']['id'] === $post['user_id']){ ?>
+                    <?php if ($_SESSION['user']['id'] === $post['user_id']) { ?>
 
                         <div class="dropdownFeedSettings">
                             <p>Post settings</p>
@@ -64,7 +61,7 @@ if (isset($_SESSION['user'])) {
                     <p class="caption"><?php echo nl2br($post['post_text']) ?></p>
                     <?php $comments = getPostComments($pdo, $post['id']); ?>
                     <div class="comments">
-                        <?php foreach ($comments as $comment){ ?>
+                        <?php foreach ($comments as $comment) { ?>
                             <a class="profileCommentLink" href="/profile.php?username=<?php echo $comment['username'] ?>">
                                 <img class="profileImageFeed" src="<?php echo $comment['avatar_image'] ?>" alt="">
                                 <p><?php echo $comment['username'] ?></p>
@@ -77,13 +74,14 @@ if (isset($_SESSION['user'])) {
                 </div>
 
             <?php }; ?>
-        <?php }else { ?>
+        <?php } else { ?>
 
             <h1 class="noPostsText">Your posts and posts from those you follow will show up here</h1>
 
         <?php }; ?>
     </div>
-<?php }else {?>
+<?php
+} else {?>
 
     <div class="welcomeScreen">
         <h1 class="welcomeMessages">Welcome to Picture-This</h1>

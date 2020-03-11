@@ -1,13 +1,21 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 require __DIR__.'/../autoload.php';
 
-if (!userLoggedIn()){
+if (!userLoggedIn()) {
     $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
 };
 if (isset($_POST['rose'])) {
-
     $postId = filter_var($_POST['rose'], FILTER_SANITIZE_NUMBER_INT);
 
     $statement = $pdo->prepare('DELETE FROM roses WHERE post_id = :post_id AND user_id = :user_id');

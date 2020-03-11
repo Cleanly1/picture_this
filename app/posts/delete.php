@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 require __DIR__.'/../autoload.php';
 
 if (!userLoggedIn()) {
@@ -16,7 +25,6 @@ if (isset($_POST['delete'])) {
     }
 
     if (!isset($_SESSION['errors'])) {
-
         unlink('../..' . $post['post_image']);
 
         $statement = $pdo->prepare('DELETE FROM posts WHERE id = :id AND user_id = :user_id');

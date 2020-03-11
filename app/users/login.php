@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
@@ -26,11 +35,9 @@ if (isset($_POST['email'], $_POST['password'])) {
         ];
         unset($_SESSION['errors']);
     } else {
-      $_SESSION['errors'][] = 'Seems like you got the wrong password/email';
-      redirect('/login.php');
+        $_SESSION['errors'][] = 'Seems like you got the wrong password/email';
+        redirect('/login.php');
     }
-
-
 }
 
 redirect('/');

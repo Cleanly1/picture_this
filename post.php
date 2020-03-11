@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
         $_SESSION['error'][] = 'Something unexpected happend';
         redirect('/');
     }
-}if (isset($_POST['edit'])) {
+} if (isset($_POST['edit'])) {
     $_SESSION['edit'] = filter_var($_POST['edit'], FILTER_SANITIZE_STRING);
 }
 
@@ -21,7 +21,7 @@ $comments = getPostComments($pdo, $postId);
 <div class="post">
 
     <div class="postContent">
-        <?php if ($_SESSION['user']['id'] === $post['user_id'] && !isset($_POST['edit'])){ ?>
+        <?php if ($_SESSION['user']['id'] === $post['user_id'] && !isset($_POST['edit'])) { ?>
             <div class="dropdownPostSettings">
                 <p>Post settings</p>
                 <div class="postSettings">
@@ -47,24 +47,24 @@ $comments = getPostComments($pdo, $postId);
                 <img class="rosePost" src="/assets/icons/unrose.svg" alt="Like image">
             </button>
         </form>
-        <?php if (isset($_SESSION['edit']) && $_SESSION['user']['id'] === $post['user_id']){ ?>
+        <?php if (isset($_SESSION['edit']) && $_SESSION['user']['id'] === $post['user_id']) { ?>
             <form class="editPost" action="/app/posts/edit.php" method="post" enctype="multipart/form-data">
                 <label for="caption">Description</label>
                 <textarea name="caption" rows="8" cols="80" wrap="hard"><?php echo $post['post_text'] ?></textarea>
                 <button type="submit" name="postId" value="<?php echo $postId ?>">Update</button>
             </form>
-        <?php }else { ?>
+        <?php } else { ?>
             <p class="caption"><?php echo nl2br($post['post_text']) ?></p>
         <?php } ?>
 
         <div class="comments">
-            <?php foreach ($comments as $comment){ ?>
+            <?php foreach ($comments as $comment) { ?>
                 <a class="profileCommentLink" href="/profile.php?username=<?php echo $comment['username'] ?>">
                     <img class="profileImageFeed" src="<?php echo $comment['avatar_image'] ?>" alt="<?php echo $comment['username'] ?> profile picture">
                     <p><?php echo $comment['username'] ?></p>
                 </a>
                 <p class="commentText"><?php echo nl2br($comment['comment']) ?>
-                    <?php if ($comment['user_id'] === $_SESSION['user']['id']){ ?>
+                    <?php if ($comment['user_id'] === $_SESSION['user']['id']) { ?>
                         <form class="deleteComment" action="/app/posts/deleteComment.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $comment['id'] ?>">
                             <button type="submit">Delete comment</button>

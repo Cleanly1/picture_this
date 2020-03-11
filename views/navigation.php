@@ -12,7 +12,7 @@ isset($_SERVER['QUERY_STRING']) === true ? $queryString = $_SERVER['QUERY_STRING
                     </svg>
                 </a>
             </li>
-            <?php if (userLoggedIn()){ ?>
+            <?php if (userLoggedIn()) { ?>
                 <li class="navItem"><a href="/createPost.php" class="navLinks">
                     <svg class="newPost" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 460">
                         <path fill="<?php echo $_SERVER['SCRIPT_NAME'] === '/createPost.php' ? '#000' : '#fff'; ?>" d="M344.75 431H116.02c-46.1 0-83.47-37.37-83.47-83.47V109.47c0-46.1 37.37-83.47 83.47-83.47h228.72c46.1 0 83.47 37.37 83.47 83.47v238.06c.01 46.1-37.36 83.47-83.46 83.47z" fill="#fff" stroke="#000" stroke-width="14" stroke-linecap="round" stroke-miterlimit="10"/>
@@ -40,7 +40,7 @@ isset($_SERVER['QUERY_STRING']) === true ? $queryString = $_SERVER['QUERY_STRING
                                 Logout
                             </a>
                         </li>
-                    <?php }else { ?>
+                    <?php } else { ?>
                         <li class="navItem">
                             <a href="/login.php" class="navLinks">
                                 Login

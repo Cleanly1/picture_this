@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
@@ -25,25 +34,19 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
 
     foreach ($results as $result) {
         if ($result['email'] === $email && $result['username'] !== $username) {
-
             $_SESSION['errors'][] = 'It seems that the email is already registered.';
-
         }
         if ($result['username'] === $username && $result['email'] !== $email) {
-
             $_SESSION['errors'][] = 'It seems that the username is already registered.';
         }
         if ($result['email'] === $email && $result['username'] === $username) {
-
             $_SESSION['errors'] = ['It seems that this username is already in use.',
             'It seems that the email is already registered.'];
-
         }
-
     }
     if (isset($_SESSION['errors'])) {
         redirect('/createAccount.php');
-    }else {
+    } else {
         $statement = $pdo->prepare('INSERT INTO users (username, email, password, avatar_image) VALUES(:username, :email, :password, :avatar_image)');
         $statement->execute([
             ':username' => $username,
@@ -53,11 +56,10 @@ if (isset($_POST['email'],$_POST['username'] , $_POST['password'])) {
 
         ]);
         $_SESSION['success'][] = 'Your account was created successfully';
-        if (isset($_SESSION['errors'])){
+        if (isset($_SESSION['errors'])) {
             unset($_SESSION['errors']);
         }
     }
-
 }
 
 

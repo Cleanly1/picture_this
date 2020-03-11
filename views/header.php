@@ -14,13 +14,13 @@ require __DIR__.'/../app/autoload.php';
 </head>
 <body>
 
-    <?php if (isset($_SESSION['errors'])){ ?>
+    <?php if (isset($_SESSION['errors'])) { ?>
         <div class="errorMessages">
             <?php showErrors(); ?>
         </div>
     <?php }; ?>
 
-    <?php if (isset($_SESSION['success'])){ ?>
+    <?php if (isset($_SESSION['success'])) { ?>
         <div class="successMessages">
             <?php showSuccess(); ?>
         </div>

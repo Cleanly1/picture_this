@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 require __DIR__ . '/../autoload.php';
 
 if (!userLoggedIn()) {
@@ -7,7 +16,6 @@ if (!userLoggedIn()) {
     redirect('/');
 };
 if (isset($_GET['search'])) {
-
     $searchedUsername = filter_var($_GET['search'], FILTER_SANITIZE_STRING);
 
     $statement = $pdo->prepare('SELECT id, username, email, avatar_image FROM users WHERE username LIKE :searchedUsername');
@@ -26,7 +34,6 @@ if (isset($_GET['search'])) {
         header('Content-Type: application/json');
         echo $users;
     } else {
-
         $users = json_encode($users);
         header('Content-Type: application/json');
         echo $users;

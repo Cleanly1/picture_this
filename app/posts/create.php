@@ -1,9 +1,18 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 require __DIR__.'/../autoload.php';
 
 
-if (!userLoggedIn()){
+if (!userLoggedIn()) {
     $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
 };
@@ -13,15 +22,11 @@ if (isset($_FILES['postImage'])) {
     $caption = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
 
     if ($postImage['type'] != 'image/jpg' && $postImage['type'] != 'image/jpeg' && $postImage['size'] !== 0) {
-
-      $_SESSION['errors'][] = 'The image file type is not allowed.';
-
+        $_SESSION['errors'][] = 'The image file type is not allowed.';
     }
 
     if ($postImage['size'] > 2097152 || $postImage['size'] === 0) {
-
         $_SESSION['errors'][] = 'The uploaded file exceeded the file size limit.';
-
     }
 
     preg_match_all("/(\n)(\r)/", $caption, $matches);
@@ -32,7 +37,6 @@ if (isset($_FILES['postImage'])) {
     }
 
     if (!isset($_SESSION['errors'])) {
-
         $imagePath = '/uploads/' . uniqid() . '.jpg';
         $publishedDate = date('Y/m/d H:i:s');
 
@@ -53,6 +57,4 @@ if (isset($_FILES['postImage'])) {
         redirect('/');
     }
     redirect('/createPost.php');
-
-
 }

@@ -3,7 +3,7 @@
     <h1><?php echo $username ?></h1>
 </div>
 <ul class="userList">
-    <?php foreach ($users as $user){ ?>
+    <?php foreach ($users as $user) { ?>
         <li class="searchedProfiles">
             <a href="/profile.php?username=<?php echo $user['username'] ?>">
                 <img class="profileImageSearch" src="<?php echo $user['avatar_image'] ?>" alt="<?php echo $user['username'] ?> profile picture">

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
@@ -7,7 +16,6 @@ require __DIR__ . '/../autoload.php';
 // Delete account
 
 if (isset($_POST)) {
-
     $statement = $pdo->prepare("SELECT * FROM users where id = :id");
     $statement->execute([
         ":id" => $_SESSION["user"]["id"]

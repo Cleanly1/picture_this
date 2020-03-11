@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 if (!function_exists('redirect')) {
@@ -140,7 +149,6 @@ if (!function_exists('updateRose')) {
      */
     function updateRose(object $pdo, int $postId, int $roses): void
     {
-
         $statement = $pdo->prepare('UPDATE posts SET roses = :roses WHERE id = :id');
         $statement->execute([
             ':roses' => $roses,
@@ -263,7 +271,6 @@ if (!function_exists('checkIfFollowed')) {
      */
     function checkIfFollowed(object $pdo, int $followedUser, int $userId)
     {
-
         $statement = $pdo->prepare('SELECT * FROM follows WHERE followed_user_id = :followedUser AND follows_user_id = :user_id');
         $statement->execute([
             ':followedUser' => $followedUser,
@@ -288,7 +295,6 @@ if (!function_exists('getFollowers')) {
      */
     function getFollowers(object $pdo, int $userId): array
     {
-
         $statement = $pdo->prepare('SELECT * FROM follows LEFT JOIN users ON follows.follows_user_id = users.id WHERE followed_user_id = :user_id');
         $statement->execute([
             ':user_id' => $userId
@@ -307,7 +313,6 @@ if (!function_exists('getFollowing')) {
      */
     function getFollowing(object $pdo, int $userId): array
     {
-
         $statement = $pdo->prepare('SELECT * FROM follows LEFT JOIN users ON follows.followed_user_id = users.id WHERE follows_user_id = :user_id');
         $statement->execute([
             ':user_id' => $userId

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Yrgo.
+ *
+ * (c) Yrgo, högre yrkesutbildning.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
@@ -11,7 +20,6 @@ if (!userLoggedIn()) {
 
 
 if (isset($_POST['unfollow'])) {
-
     $followedUser = filter_var($_POST['unfollow'], FILTER_SANITIZE_STRING);
 
     $followedUser = getUserData($pdo, $followedUser);
@@ -32,7 +40,7 @@ if (isset($_POST['unfollow'])) {
             ':user_id' => $_SESSION['user']['id'],
         ]);
         redirect('../../profile.php?username=' . $followedUser['username']);
-    }else {
+    } else {
         redirect('../../profile.php?username=' . $followedUser['username']);
     }
 
@@ -49,6 +57,4 @@ if (isset($_POST['unfollow'])) {
     //
     // header('Content-Type: application/json');
     // echo $followed;
-
-
 }

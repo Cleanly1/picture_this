@@ -1,7 +1,7 @@
 <?php
 
 require __DIR__ . '/views/header.php';
-if (!userLoggedIn()){
+if (!userLoggedIn()) {
     redirect('/');
 };
 
@@ -15,13 +15,13 @@ if ($_SESSION['user']['username'] !== $username && $username != "") {
     $userData = $_SESSION['user'];
 };
 
-isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRING'])[1] : $username = $userData['username'];
+isset($_SERVER['QUERY_STRING']) ? $username = explode("=", $_SERVER['QUERY_STRING'])[1] : $username = $userData['username'];
 
 ?>
 <div class="profile">
     <div class="profileName">
         <h1><?php echo $userData['username'] ?></h1>
-        <?php if ($_SESSION['user']['username'] === $username){ ?>
+        <?php if ($_SESSION['user']['username'] === $username) { ?>
             <a href="/settings.php" class="navLinks" >
                 <svg class="cog" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
                     <g stroke="#000" stroke-miterlimit="10" stroke-width="14">
@@ -36,16 +36,16 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
     <div class="profileInfo">
         <img src="<?php echo $userData['avatar_image'] ?>" alt="Profile picture">
         <div class="profileBio">
-            <?php if ($userData['biography'] === "" && $username === $_SESSION['user']['username']){  ?>
+            <?php if ($userData['biography'] === "" && $username === $_SESSION['user']['username']) {  ?>
                 <p>You can change your bio in the settings</p>
-            <?php }else { ?>
+            <?php } else { ?>
                 <p><?php echo nl2br($userData['biography']) ?></p>
             <?php } ?>
         </div>
     </div>
     <!-- Follow button -->
     <div class="followFunction">
-        <?php if ($userData['username'] !== $_SESSION['user']['username']){ ?>
+        <?php if ($userData['username'] !== $_SESSION['user']['username']) { ?>
             <form class="followForm" action="app/users/<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? "follow.php" : "unfollow.php" ?>" method="post">
                 <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'isNotFollowed' : 'hidden' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="follow">Follow</button>
                 <button class="<?php echo !checkIfFollowed($pdo, $userData['id'], $_SESSION['user']['id']) ? 'hidden' : 'isFollowed' ?>" type="submit" value="<?php echo $userData['username'] ?>" name="unfollow">Unfollow</button>
@@ -60,7 +60,7 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
     <!-- The selected users posts -->
     <div class="posts">
         <?php $posts = getUserPosts($pdo, $userData['id']); ?>
-        <?php if (empty($posts) && $username === $_SESSION['user']['username']){ ?>
+        <?php if (empty($posts) && $username === $_SESSION['user']['username']) { ?>
             <div class="noPost">
                 <h2>You have no posts, maybe consider adding some</h2>
                 <p>Great idea? Just press here<a href="/createPost.php">New Post</a></p>
@@ -69,7 +69,7 @@ isset($_SERVER['QUERY_STRING']) ? $username = explode("=" , $_SERVER['QUERY_STRI
 
         <?php } else { ?>
 
-            <?php foreach ($posts as $post){ ?>
+            <?php foreach ($posts as $post) { ?>
                 <a class="previewPosts" href="/post.php?id=<?php echo $post['id'] ?>">
                     <img src="<?php echo $post['post_image'] ?>" alt="">
                 </a>
