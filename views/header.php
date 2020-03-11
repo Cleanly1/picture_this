@@ -18,12 +18,12 @@ require __DIR__.'/../app/autoload.php';
         <div class="errorMessages">
             <?php showErrors(); ?>
         </div>
-    <?php }; ?>
+    <?php } ?>
 
     <?php if (isset($_SESSION['success'])) { ?>
         <div class="successMessages">
             <?php showSuccess(); ?>
         </div>
-    <?php }; ?>
+    <?php } ?>
 
-    <?php require __DIR__ . '/navigation.php' ?>
+    <?php require __DIR__.'/navigation.php' ?>

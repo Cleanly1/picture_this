@@ -18,7 +18,6 @@ if (!userLoggedIn()) {
     redirect('/');
 }
 
-
 if (isset($_POST['unfollow'])) {
     $followedUser = filter_var($_POST['unfollow'], FILTER_SANITIZE_STRING);
 
@@ -32,18 +31,16 @@ if (isset($_POST['unfollow'])) {
         $_SESSION['errors'][] = 'Something went wrong...';
     }
 
-
     if (!isset($_SESSION['errors'])) {
         $statement = $pdo->prepare('DELETE FROM follows WHERE followed_user_id = :followed_user_id AND follows_user_id = :user_id');
         $statement->execute([
             ':followed_user_id' => $followedUser['id'],
-            ':user_id' => $_SESSION['user']['id'],
+            ':user_id'          => $_SESSION['user']['id'],
         ]);
-        redirect('../../profile.php?username=' . $followedUser['username']);
+        redirect('../../profile.php?username='.$followedUser['username']);
     } else {
-        redirect('../../profile.php?username=' . $followedUser['username']);
+        redirect('../../profile.php?username='.$followedUser['username']);
     }
-
 
     // if (!isset($_SESSION['errors'])) {
     //     $followed = json_encode([

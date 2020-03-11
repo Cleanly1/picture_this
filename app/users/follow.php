@@ -16,7 +16,7 @@ require __DIR__.'/../autoload.php';
 if (!userLoggedIn()) {
     $_SESSION['errors'][] = 'Please log in and try again';
     redirect('/');
-};
+}
 
 if (isset($_POST['follow'])) {
     $followedUser = filter_var($_POST['follow'], FILTER_SANITIZE_STRING);
@@ -33,11 +33,11 @@ if (isset($_POST['follow'])) {
         $statement = $pdo->prepare('INSERT INTO follows (followed_user_id, follows_user_id) VALUES(:followed_user_id, :user_id)');
         $statement->execute([
             ':followed_user_id' => $followedUser['id'],
-            ':user_id' => $_SESSION['user']['id'],
+            ':user_id'          => $_SESSION['user']['id'],
         ]);
-        redirect('../../profile.php?username=' . $followedUser['username']);
+        redirect('../../profile.php?username='.$followedUser['username']);
     } else {
-        redirect('../../profile.php?username=' . $followedUser['username']);
+        redirect('../../profile.php?username='.$followedUser['username']);
     }
 
     // if (!$check) {
